@@ -9,11 +9,11 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "New Fitness Studio Coming Soon | Atlanta Area",
-  description: "Strength, conditioning, kickboxing, somatic movement. Two pros with 20+ years of experience are building something special. Get notified—and help us design the schedule.",
+  title: "A Fitness Program That Actually Sees You | Coming Soon to Atlanta",
+  description: "Small group fitness classes with real coaching. Strength, kickboxing, and somatic movement in an intimate setting where coaches know your name. Help us build it.",
   openGraph: {
-    title: "New Fitness Studio Coming Soon | Atlanta Area",
-    description: "Strength, conditioning, kickboxing, somatic movement. We're building something special. Help us design it.",
+    title: "A Fitness Program That Actually Sees You | Coming Soon to Atlanta",
+    description: "Small group fitness with real coaching. Strength, kickboxing, somatic movement. We're building something special—and we're building it with you.",
   },
 };
 
