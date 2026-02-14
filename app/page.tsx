@@ -7,7 +7,7 @@ export default function Home() {
       {/* Hero */}
       <header className="relative overflow-hidden border-b border-stone-200/60">
         <div className="absolute inset-0 bg-gradient-to-br from-stone-900/5 via-transparent to-transparent" />
-        <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-24 lg:py-32">
+        <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-24">
           <p className="mb-4 text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
             Coming Soon &middot; Atlanta Area
           </p>
@@ -22,14 +22,11 @@ export default function Home() {
           <div className="mt-10">
             <EmailSignupForm buttonText="Be Part of It from Day One" />
           </div>
-          <p className="mt-3 text-sm text-[var(--muted)]">
-            Tell us your ideal schedule—early mornings, evenings, or weekends? We&apos;re designing this around your life.
-          </p>
         </div>
       </header>
 
       {/* We Get It - empathy bridge */}
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+      <section className="mx-auto max-w-6xl px-6 py-12 sm:py-14 md:py-16">
         <div className="max-w-2xl">
           <p className="text-lg text-[var(--muted)] leading-relaxed">
             Maybe you&apos;ve tried the big-box classes where no one learns your name.
@@ -43,14 +40,14 @@ export default function Home() {
       </section>
 
       {/* Class offerings */}
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Three ways in. All of them yours.
         </h2>
         <p className="mt-2 text-[var(--muted)]">
           Every class is small enough that your coaches know your name by day one.
         </p>
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
               title: "Strength & conditioning",
@@ -78,7 +75,7 @@ export default function Home() {
 
       {/* The Invitation - bottom CTA */}
       <section className="border-t border-stone-200/60 bg-stone-100/50">
-        <div className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             This isn&apos;t built yet. That&apos;s the point.
           </h2>
@@ -95,7 +92,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-stone-200/60 py-8">
+      <footer className="border-t border-stone-200/60 py-6">
         <div className="mx-auto max-w-6xl px-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-[var(--muted)]">
