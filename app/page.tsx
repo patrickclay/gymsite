@@ -54,15 +54,15 @@ export default function Home() {
           {[
             {
               title: "Strength & conditioning",
-              desc: "Learn what your body can actually do when someone\u2019s paying attention. Real coaching, real progression\u2014from unsure to confident under the bar.",
+              desc: "Learn what your body can actually do when someone\u2019s paying attention. Real coaching, real progression\u2014from unsure to confident under the bar. 12 people max, so your coach tracks your progress week to week.",
             },
             {
               title: "Kickboxing & self-defense",
-              desc: "Walk in carrying your day. Walk out carrying yourself differently. Empowering, challenging, and built around skills that stay with you.",
+              desc: "Walk in carrying your day. Walk out carrying yourself differently. Empowering, challenging, and built around skills that stay with you. Small groups with a coach who adjusts every drill to your level.",
             },
             {
               title: "Somatic movement",
-              desc: "The class no one expects to love\u2014and can\u2019t stop talking about. Psychology meets movement. Restore the connection between your mind and body.",
+              desc: "The class no one expects to love\u2014and can\u2019t stop talking about. Psychology meets movement. Restore the connection between your mind and body. Capped at 8 so your coach can give truly individual guidance.",
             },
           ].map(({ title, desc }) => (
             <div
