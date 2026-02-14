@@ -58,7 +58,7 @@ export default function Home() {
             },
             {
               title: "Kickboxing & self-defense",
-              desc: "Walk in carrying your day. Walk out carrying yourself differently. Empowering, challenging, and built around skills that stay with you. Small groups with a coach who adjusts every drill to your level.",
+              desc: "Walk in carrying your day. Walk out carrying yourself differently. Empowering, challenging, and built around skills that stay with you. Capped at 16 with a coach who adjusts every drill to your level.",
             },
             {
               title: "Somatic movement",
