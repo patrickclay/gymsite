@@ -8,9 +8,14 @@ export default function Home() {
       <header className="relative overflow-hidden border-b border-stone-200/60">
         <div className="absolute inset-0 bg-gradient-to-br from-stone-900/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-24">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
-            Coming Soon &middot; Atlanta Area
-          </p>
+          <div className="mb-4 flex items-center justify-between">
+            <p className="text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
+              Coming Soon &middot; Atlanta Area
+            </p>
+            <Link href="/schedule" className="text-sm font-medium text-[var(--foreground)] hover:text-[var(--accent)]">
+              Schedule
+            </Link>
+          </div>
           <h1 className="max-w-3xl font-bold tracking-tight text-[var(--foreground)] text-4xl sm:text-5xl lg:text-6xl">
             You&apos;ve been looking for a fitness program that actually sees you.
           </h1>
@@ -47,6 +52,12 @@ export default function Home() {
         <p className="mt-2 text-[var(--muted)]">
           Every class is small enough that your coaches know your name by day one.
         </p>
+        <Link
+          href="/schedule"
+          className="mt-4 inline-block text-sm font-semibold text-[var(--accent)] hover:underline"
+        >
+          See upcoming classes and reserve your spot →
+        </Link>
         <div className="mt-8 sm:mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
