@@ -67,7 +67,7 @@ export function ClassesTab({ classes }: ClassesTabProps) {
       </div>
 
       {classes.length === 0 ? (
-        <p className="text-sm text-[var(--muted)]">No upcoming classes. Add one to get started.</p>
+        <p className="py-8 text-center text-base text-muted-foreground">No upcoming classes. Add one to get started.</p>
       ) : (
         <Table>
           <TableHeader>
@@ -92,7 +92,7 @@ export function ClassesTab({ classes }: ClassesTabProps) {
               });
               const price = (c.price_cents / 100).toFixed(0);
               return (
-                <TableRow key={c.id}>
+                <TableRow key={c.id} className="even:bg-stone-50/50">
                   <TableCell className="font-medium">{c.name}</TableCell>
                   <TableCell>{c.type}</TableCell>
                   <TableCell>{c.instructor}</TableCell>
@@ -155,7 +155,7 @@ export function ClassesTab({ classes }: ClassesTabProps) {
             </DialogDescription>
           </DialogHeader>
           {deleteError && (
-            <p className="text-sm text-red-600">{deleteError}</p>
+            <p className="text-sm rounded-md px-3 py-2 bg-red-50 text-red-700">{deleteError}</p>
           )}
           <DialogFooter>
             <Button variant="outline" onClick={() => setDeleteOpen(false)}>

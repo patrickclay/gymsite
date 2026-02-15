@@ -72,7 +72,7 @@ export function BookingsTab({ bookings, classes }: BookingsTabProps) {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="text-sm text-[var(--muted)]">No bookings found.</p>
+        <p className="py-8 text-center text-base text-muted-foreground">No bookings found.</p>
       ) : (
         <Table>
           <TableHeader>
@@ -100,14 +100,21 @@ export function BookingsTab({ bookings, classes }: BookingsTabProps) {
                   })
                 : "";
               return (
-                <TableRow key={b.id}>
+                <TableRow key={b.id} className="even:bg-stone-50/50">
                   <TableCell className="font-medium">{b.customer_name}</TableCell>
                   <TableCell>{b.customer_email}</TableCell>
                   <TableCell>{b.customer_phone ?? "-"}</TableCell>
                   <TableCell>{className}</TableCell>
                   <TableCell>{classDate}{classTime ? ` \u00b7 ${classTime}` : ""}</TableCell>
                   <TableCell>
-                    <Badge variant={b.status === "confirmed" ? "default" : "secondary"} className={b.status === "confirmed" ? "bg-green-600" : ""}>
+                    <Badge
+                      variant="secondary"
+                      className={
+                        b.status === "confirmed"
+                          ? "bg-green-100 text-green-700 border-green-200"
+                          : "bg-stone-100 text-stone-500 border-stone-200"
+                      }
+                    >
                       {b.status}
                     </Badge>
                   </TableCell>
@@ -136,7 +143,7 @@ export function BookingsTab({ bookings, classes }: BookingsTabProps) {
             </DialogDescription>
           </DialogHeader>
           {cancelError && (
-            <p className="text-sm text-red-600">{cancelError}</p>
+            <p className="text-sm rounded-md px-3 py-2 bg-red-50 text-red-700">{cancelError}</p>
           )}
           <DialogFooter>
             <Button variant="outline" onClick={() => setCancelOpen(false)}>

@@ -166,7 +166,7 @@ export function AddClassForm({ editMode, classData, onSuccess }: AddClassFormPro
         {editMode ? "Update class" : "Add class"}
       </Button>
       {state.message && (
-        <p className={`text-sm ${state.success ? "text-green-600" : "text-red-600"}`}>
+        <p className={`text-sm rounded-md px-3 py-2 ${state.success ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
           {state.message}
         </p>
       )}
