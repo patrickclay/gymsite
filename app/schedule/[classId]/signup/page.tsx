@@ -170,7 +170,7 @@ export default async function SignupPage({
 
         <div className="mt-8">
           <h2 className="text-lg font-semibold">Reserve your spot</h2>
-          <ReservationForm classId={classId} />
+          <ReservationForm classId={classId} className={classRow.name} shareUrl={classSignupUrl} />
         </div>
       </main>
     </div>

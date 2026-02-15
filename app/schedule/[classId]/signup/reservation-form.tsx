@@ -3,17 +3,28 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { createReservation } from "@/app/actions";
+import { ShareClassSection, type SharePayload } from "./share-class-section";
 
-export function ReservationForm({ classId }: { classId: string }) {
+export function ReservationForm({ classId, className, shareUrl }: { classId: string; className: string; shareUrl: string }) {
   const [state, formAction] = useActionState(createReservation, {
     message: "",
     success: false,
   });
 
   if (state.success) {
+    const sharePayload: SharePayload = {
+      title: `Join me at ${className}!`,
+      text: `I just reserved a spot for ${className}. Come work out with me!`,
+      url: shareUrl,
+    };
     return (
       <div className="mt-4 rounded-xl border border-stone-200/60 bg-white/80 p-6">
         <p className="text-[var(--foreground)] font-medium">{state.message}</p>
+        <div className="mt-6">
+          <p className="text-sm font-semibold text-[var(--foreground)]">Bring a friend?</p>
+          <p className="mt-1 text-sm text-[var(--muted)]">Share this class and work out together.</p>
+        </div>
+        <ShareClassSection sharePayload={sharePayload} />
         <Link
           href="/schedule"
           className="mt-4 inline-block rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
