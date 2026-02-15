@@ -14,7 +14,7 @@ export default async function AdminPage() {
 
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-[var(--background)]">
+      <div className="admin-theme min-h-screen bg-[var(--background)]">
         <header className="border-b border-stone-200/60">
           <div className="mx-auto max-w-6xl px-6 py-6">
             <Link href="/schedule" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)]">
@@ -57,7 +57,7 @@ export default async function AdminPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="admin-theme min-h-screen bg-[var(--background)]">
       <header className="border-b border-stone-200/60">
         <div className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
           <div>
