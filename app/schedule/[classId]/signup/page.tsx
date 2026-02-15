@@ -3,6 +3,7 @@ import { createServerClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { ReservationForm } from "./reservation-form";
 import { ShareClassSection } from "./share-class-section";
+import { siteConfig } from "@/lib/site-config";
 
 function buildClassMeta(classRow: {
   name: string;
@@ -22,10 +23,10 @@ function buildClassMeta(classRow: {
     minute: "2-digit",
     hour12: true,
   });
-  const title = `${classRow.name} | ${classRow.type} — Atlanta Area`.slice(0, 60);
+  const title = `${classRow.name} | ${classRow.type} — ${siteConfig.business.name}`.slice(0, 60);
   const description =
     classRow.description?.slice(0, 155) ||
-    `${classRow.type} with ${classRow.instructor}. ${dateTimeStr}. Reserve your spot. Atlanta area.`.slice(0, 155);
+    `${classRow.type} with ${classRow.instructor}. ${dateTimeStr}. Reserve your spot. ${siteConfig.business.address.city}, ${siteConfig.business.address.state}.`.slice(0, 155);
   return { title, description };
 }
 
@@ -86,8 +87,8 @@ export default async function SignupPage({
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://fitnesssite-six.vercel.app";
   const classSignupUrl = `${siteUrl}/schedule/${classId}/signup`;
   const sharePayload = {
-    title: `${classRow.name} | ${classRow.type} — Atlanta Area`,
-    text: `${classRow.name} — Reserve your spot. Atlanta area.`,
+    title: `${classRow.name} | ${classRow.type} — ${siteConfig.business.name}`,
+    text: `${classRow.name} — Reserve your spot. ${siteConfig.business.address.city}, ${siteConfig.business.address.state}.`,
     url: classSignupUrl,
   };
 
@@ -117,11 +118,18 @@ export default async function SignupPage({
     eventStatus: "https://schema.org/EventScheduled",
     location: {
       "@type": "Place",
-      name: "Atlanta Area",
+      name: siteConfig.business.name,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: siteConfig.business.address.street,
+        addressLocality: siteConfig.business.address.city,
+        addressRegion: siteConfig.business.address.state,
+        postalCode: siteConfig.business.address.zip,
+      },
     },
     organizer: {
       "@type": "Organization",
-      name: "Atlanta Area Fitness",
+      name: siteConfig.business.name,
     },
     offers: {
       "@type": "Offer",
