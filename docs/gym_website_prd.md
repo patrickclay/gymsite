@@ -99,6 +99,7 @@
 - Recurring class templates (e.g., "Yoga every Monday 6pm")
 - Set capacity limits per class
 - Mark classes as canceled/full
+- AI-powered description generator (see 3.8)
 - No coding required - visual interface only
 
 **Booking Flow:**
@@ -226,6 +227,43 @@
 **Success Criteria:**
 - >15% of bookings include social share
 - Social referral traffic >20% of total traffic
+
+---
+
+### 3.8 AI-Powered Content Tools
+**Priority: P1 (Should-Have)**
+**Status: Implemented (February 2026)**
+
+**Description Generator:**
+- One-click AI description generation in the admin class form
+- Uses Vercel AI Gateway (built on AI SDK) with GPT-4o-mini
+- Generates SEO-friendly, social-sharing-optimized class descriptions
+- Tuned for brand voice: warm, confident, inclusive — matching homepage tone
+- Incorporates Atlanta-area fitness keywords for local SEO
+- Admin can edit generated text before saving
+
+**How It Works:**
+1. Admin fills in class name, type, instructor, duration, and capacity
+2. Clicks "Generate with AI" button next to the description field
+3. AI produces a 2-3 sentence description optimized for search and social sharing
+4. Admin reviews, edits if needed, and saves
+
+**Technical Details:**
+- API route: `/api/generate-description` (admin-session-gated)
+- Provider: Vercel AI Gateway → OpenAI GPT-4o-mini (swappable to any model)
+- Cost: fractions of a cent per generation
+- Env var: `AI_GATEWAY_API_KEY`
+
+**Future Enhancements:**
+- Social media post generation from class descriptions
+- Email campaign copy generation
+- Tone/style presets (e.g., "energetic", "calm", "motivational")
+- Batch description generation for recurring class series
+
+**Success Criteria:**
+- >80% of new classes use AI-generated descriptions (vs. blank)
+- Generated descriptions include at least one local SEO keyword
+- Admin time to create a class with description <3 minutes
 
 ---
 
@@ -360,4 +398,5 @@ This gives you hands-on experience with modern web stack while delivering real v
 
 ## Revision History
 
+- **v1.1** - Added Section 3.8: AI-Powered Content Tools (February 14, 2026)
 - **v1.0** - Initial PRD created (February 9, 2026)

@@ -1,11 +1,12 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { addClass, updateClass } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Sparkles, Loader2 } from "lucide-react";
 import type { ClassRow } from "./admin-tabs";
 
 // 15-min slots from 5:00 AM to 10:00 PM, value = 24h "HH:mm"
@@ -30,12 +31,61 @@ type AddClassFormProps = {
 export function AddClassForm({ editMode, classData, onSuccess }: AddClassFormProps) {
   const action = editMode ? updateClass : addClass;
   const [state, formAction] = useActionState(action, { message: "", success: false });
+  const [generating, setGenerating] = useState(false);
+  const [aiError, setAiError] = useState("");
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (state.success) {
       onSuccess?.();
     }
   }, [state.success, onSuccess]);
+
+  async function handleGenerateDescription() {
+    setAiError("");
+    const form = formRef.current;
+    if (!form) return;
+
+    const fd = new FormData(form);
+    const name = fd.get("name")?.toString()?.trim();
+    const type = fd.get("type")?.toString()?.trim();
+    const instructor = fd.get("instructor")?.toString()?.trim();
+    const duration = fd.get("duration_minutes")?.toString();
+    const capacity = fd.get("capacity")?.toString();
+
+    if (!name || !type) {
+      setAiError("Enter a class name and type first.");
+      return;
+    }
+
+    setGenerating(true);
+    try {
+      const res = await fetch("/api/generate-description", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, type, instructor, duration, capacity }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAiError(data.error || "Failed to generate description.");
+        return;
+      }
+      if (descriptionRef.current) {
+        descriptionRef.current.value = data.description;
+        // Trigger React's change tracking by dispatching an input event
+        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+          window.HTMLTextAreaElement.prototype, "value"
+        )?.set;
+        nativeInputValueSetter?.call(descriptionRef.current, data.description);
+        descriptionRef.current.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+    } catch {
+      setAiError("Network error. Try again.");
+    } finally {
+      setGenerating(false);
+    }
+  }
 
   // Extract defaults for edit mode
   const defaultDate = classData
@@ -49,7 +99,7 @@ export function AddClassForm({ editMode, classData, onSuccess }: AddClassFormPro
     : "35";
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form ref={formRef} action={formAction} className="space-y-4">
       {editMode && classData && (
         <input type="hidden" name="class_id" value={classData.id} />
       )}
@@ -153,8 +203,27 @@ export function AddClassForm({ editMode, classData, onSuccess }: AddClassFormPro
         />
       </div>
       <div>
-        <Label htmlFor="description">Description (optional)</Label>
+        <div className="flex items-center gap-2">
+          <Label htmlFor="description">Description (optional)</Label>
+          <button
+            type="button"
+            onClick={handleGenerateDescription}
+            disabled={generating}
+            className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-[var(--accent)] hover:bg-[var(--accent)]/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {generating ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            ) : (
+              <Sparkles className="h-3.5 w-3.5" />
+            )}
+            {generating ? "Generating…" : "Generate with AI"}
+          </button>
+        </div>
+        {aiError && (
+          <p className="mt-1 text-xs text-red-600">{aiError}</p>
+        )}
         <Textarea
+          ref={descriptionRef}
           id="description"
           name="description"
           rows={4}

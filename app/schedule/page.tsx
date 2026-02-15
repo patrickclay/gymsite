@@ -9,13 +9,13 @@ export const metadata = {
 };
 
 export default async function SchedulePage() {
-  let classes: { id: string; name: string; type: string; instructor: string; start_time: string; duration_minutes: number; capacity: number; price_cents: number }[] | null = null;
+  let classes: { id: string; name: string; type: string; instructor: string; start_time: string; duration_minutes: number; capacity: number; price_cents: number; description: string | null }[] | null = null;
 
   try {
     const supabase = createServerClient();
     const { data, error } = await supabase
       .from("classes")
-      .select("id, name, type, instructor, start_time, duration_minutes, capacity, price_cents")
+      .select("id, name, type, instructor, start_time, duration_minutes, capacity, price_cents, description")
       .gte("start_time", new Date().toISOString())
       .order("start_time", { ascending: true });
 
@@ -85,6 +85,11 @@ export default async function SchedulePage() {
                     {c.name}
                   </h2>
                   <p className="mt-1 text-sm text-[var(--muted)]">{c.instructor}</p>
+                  {c.description && (
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--foreground)]/80 line-clamp-2">
+                      {c.description}
+                    </p>
+                  )}
                   <p className="mt-2 text-sm text-[var(--foreground)]">
                     {dateStr} · {timeStr}
                   </p>
