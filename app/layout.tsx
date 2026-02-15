@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Syne } from "next/font/google";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { LocalBusinessSchema } from "@/components/local-business-schema";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const syne = Syne({
@@ -12,11 +16,22 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://fitnesssite-six.ver
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "A Fitness Program That Actually Sees You | Coming Soon to Atlanta",
-  description: "Small group fitness classes with real coaching. Strength, kickboxing, and somatic movement in an intimate setting where coaches know your name. Help us build it.",
+  title: {
+    default: siteConfig.seo.defaultTitle,
+    template: siteConfig.seo.titleTemplate,
+  },
+  description: siteConfig.seo.defaultDescription,
+  keywords: [...siteConfig.seo.keywords],
   openGraph: {
-    title: "A Fitness Program That Actually Sees You | Coming Soon to Atlanta",
-    description: "Small group fitness with real coaching. Strength, kickboxing, somatic movement. We're building something special—and we're building it with you.",
+    title: siteConfig.seo.defaultTitle,
+    description: siteConfig.seo.defaultDescription,
+    siteName: siteConfig.business.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.seo.defaultTitle,
+    description: siteConfig.seo.defaultDescription,
   },
 };
 
@@ -28,7 +43,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${syne.variable} font-sans antialiased`}>
-        {children}
+        <LocalBusinessSchema />
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

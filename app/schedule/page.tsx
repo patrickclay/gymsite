@@ -1,21 +1,22 @@
 import Link from "next/link";
 import { createServerClient } from "@/lib/supabase/server";
+import { siteConfig } from "@/lib/site-config";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Class Schedule | Atlanta Area",
-  description: "View upcoming classes and reserve your spot. Strength, kickboxing, somatic movement.",
+  title: `Class Schedule | ${siteConfig.business.name} — ${siteConfig.business.address.city}, ${siteConfig.business.address.state}`,
+  description: `View upcoming fitness classes and reserve your spot at ${siteConfig.business.name} in ${siteConfig.business.address.city}, GA. Strength, kickboxing, and somatic movement.`,
   openGraph: {
-    title: "Class Schedule | Atlanta Area",
-    description: "View upcoming classes and reserve your spot. Strength, kickboxing, somatic movement.",
+    title: `Class Schedule | ${siteConfig.business.name}`,
+    description: `View upcoming fitness classes and reserve your spot at ${siteConfig.business.name} in ${siteConfig.business.address.city}, GA.`,
     url: "/schedule",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Class Schedule | Atlanta Area",
-    description: "View upcoming classes and reserve your spot. Strength, kickboxing, somatic movement.",
+    card: "summary_large_image" as const,
+    title: `Class Schedule | ${siteConfig.business.name}`,
+    description: `View upcoming fitness classes and reserve your spot at ${siteConfig.business.name} in ${siteConfig.business.address.city}, GA.`,
   },
 };
 
