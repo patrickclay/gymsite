@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { createServerClient } from "@/lib/supabase/server";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Class Schedule | Atlanta Area",
   description: "View upcoming classes and reserve your spot. Strength, kickboxing, somatic movement.",
