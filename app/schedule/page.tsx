@@ -6,6 +6,17 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Class Schedule | Atlanta Area",
   description: "View upcoming classes and reserve your spot. Strength, kickboxing, somatic movement.",
+  openGraph: {
+    title: "Class Schedule | Atlanta Area",
+    description: "View upcoming classes and reserve your spot. Strength, kickboxing, somatic movement.",
+    url: "/schedule",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Class Schedule | Atlanta Area",
+    description: "View upcoming classes and reserve your spot. Strength, kickboxing, somatic movement.",
+  },
 };
 
 export default async function SchedulePage() {

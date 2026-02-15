@@ -1,0 +1,18 @@
+---
+description: When implementing or changing product-facing features, keep the product spec in sync.
+globs: 
+alwaysApply: true
+---
+
+# Update the product spec when shipping features
+
+When you implement or change **product-facing features** (user-visible behavior, new pages, new flows, or changes to existing ones):
+
+1. **Update the product spec:** [docs/gym_website_prd.md](docs/gym_website_prd.md)
+   - Add or revise the relevant section under "Feature Requirements" (or elsewhere as appropriate).
+   - Describe what was built and how it works in enough detail for future readers and for SEO/positioning.
+
+2. **Bump the revision history** at the bottom of `docs/gym_website_prd.md`:
+   - Add a new line: `- **vX.Y** - Short description of the change (Month Year)`
+
+This keeps the PRD the single source of truth and makes it easier for the team (and AI) to understand what the product does and what is implemented.

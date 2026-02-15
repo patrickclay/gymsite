@@ -29,3 +29,10 @@ Open [http://localhost:3000](http://localhost:3000).
 
 - `docs/` – PRD and planning docs
 - `app/` – Next.js App Router pages and layouts
+
+## Documentation and product spec
+
+When you add or change product-facing features, **update the product spec** so it stays the single source of truth:
+
+- **Product spec:** [docs/gym_website_prd.md](docs/gym_website_prd.md)
+- Add or revise the relevant section (e.g. under Feature Requirements) and bump the **Revision History** at the bottom of the file.

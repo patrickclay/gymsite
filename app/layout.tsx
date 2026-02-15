@@ -8,7 +8,10 @@ const syne = Syne({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://fitnesssite-six.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "A Fitness Program That Actually Sees You | Coming Soon to Atlanta",
   description: "Small group fitness classes with real coaching. Strength, kickboxing, and somatic movement in an intimate setting where coaches know your name. Help us build it.",
   openGraph: {

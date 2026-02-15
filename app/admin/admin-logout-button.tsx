@@ -7,7 +7,7 @@ export function AdminLogoutButton() {
     <form action={clearAdminSessionAction}>
       <button
         type="submit"
-        className="text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
+        className="text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
       >
         Log out
       </button>

@@ -201,7 +201,10 @@
 **Built-in Sharing:**
 - Open Graph meta tags for rich Facebook/LinkedIn previews
 - Twitter Card markup
-- Share buttons on class pages ("Share this workout with friends")
+- **Share this class (implemented):** Each class signup page includes a "Share this class" section with:
+  - **Native share:** When the browser supports the Web Share API (e.g. mobile Safari, Android Chrome), a primary "Share" button opens the system share sheet (Messages, WhatsApp, Instagram, Copy, etc.).
+  - **Copy link:** One-click copy of the class page URL to the clipboard, with "Link copied!" feedback.
+  - **Social intents:** Links that open share dialogs in a new tab for X (Twitter), Facebook, and WhatsApp, using pre-filled title/text/URL.
 - Referral incentive messaging ("Bring a friend, both get $10 off")
 
 **Social Proof Integration:**
@@ -398,5 +401,6 @@ This gives you hands-on experience with modern web stack while delivering real v
 
 ## Revision History
 
+- **v1.2** - Documented "Share this class" on class pages (Web Share API, Copy link, Twitter/Facebook/WhatsApp) (February 2026)
 - **v1.1** - Added Section 3.8: AI-Powered Content Tools (February 14, 2026)
 - **v1.0** - Initial PRD created (February 9, 2026)

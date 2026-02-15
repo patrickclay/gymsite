@@ -2,6 +2,32 @@ import Link from "next/link";
 import { createServerClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { ReservationForm } from "./reservation-form";
+import { ShareClassSection } from "./share-class-section";
+
+function buildClassMeta(classRow: {
+  name: string;
+  type: string;
+  instructor: string;
+  start_time: string;
+  duration_minutes: number;
+  description: string | null;
+}) {
+  const start = new Date(classRow.start_time);
+  const dateTimeStr = start.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+  const title = `${classRow.name} | ${classRow.type} — Atlanta Area`.slice(0, 60);
+  const description =
+    classRow.description?.slice(0, 155) ||
+    `${classRow.type} with ${classRow.instructor}. ${dateTimeStr}. Reserve your spot. Atlanta area.`.slice(0, 155);
+  return { title, description };
+}
 
 export async function generateMetadata({
   params,
@@ -12,11 +38,32 @@ export async function generateMetadata({
   const supabase = createServerClient();
   const { data } = await supabase
     .from("classes")
-    .select("name")
+    .select("id, name, type, instructor, start_time, duration_minutes, description")
     .eq("id", classId)
     .single();
+  if (!data) {
+    return { title: "Reserve your spot" };
+  }
+  const { title, description } = buildClassMeta({
+    ...data,
+    description: data.description ?? null,
+  });
+  const canonicalPath = `/schedule/${classId}/signup`;
   return {
-    title: data ? `Reserve: ${data.name}` : "Reserve your spot",
+    title,
+    description,
+    alternates: { canonical: canonicalPath },
+    openGraph: {
+      title,
+      description,
+      url: canonicalPath,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -35,6 +82,15 @@ export default async function SignupPage({
 
   if (error || !classRow) notFound();
 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://fitnesssite-six.vercel.app";
+  const classSignupUrl = `${siteUrl}/schedule/${classId}/signup`;
+  const sharePayload = {
+    title: `${classRow.name} | ${classRow.type} — Atlanta Area`,
+    text: `${classRow.name} — Reserve your spot. Atlanta area.`,
+    url: classSignupUrl,
+  };
+
   const start = new Date(classRow.start_time);
   const dateStr = start.toLocaleDateString("en-US", {
     weekday: "long",
@@ -49,8 +105,37 @@ export default async function SignupPage({
   });
   const priceDollars = (classRow.price_cents / 100).toFixed(0);
 
+  const endDate = new Date(start);
+  endDate.setMinutes(endDate.getMinutes() + classRow.duration_minutes);
+  const eventSchema = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: classRow.name,
+    startDate: start.toISOString(),
+    endDate: endDate.toISOString(),
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: "Atlanta Area",
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "Atlanta Area Fitness",
+    },
+    offers: {
+      "@type": "Offer",
+      price: classRow.price_cents / 100,
+      priceCurrency: "USD",
+    },
+  };
+
   return (
     <div className="min-h-screen bg-[var(--background)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+      />
       <header className="border-b border-stone-200/60">
         <div className="mx-auto max-w-6xl px-6 py-6">
           <Link
@@ -80,6 +165,8 @@ export default async function SignupPage({
             Payment will be collected at the start of class (cash, card, or Venmo accepted).
           </p>
         </div>
+
+        <ShareClassSection sharePayload={sharePayload} />
 
         <div className="mt-8">
           <h2 className="text-lg font-semibold">Reserve your spot</h2>

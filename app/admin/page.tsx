@@ -17,11 +17,11 @@ export default async function AdminPage() {
       <div className="admin-theme min-h-screen bg-[var(--background)]">
         <header className="border-b border-stone-200/60">
           <div className="mx-auto max-w-6xl px-6 py-6">
-            <Link href="/schedule" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)]">
+            <Link href="/schedule" className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
               &larr; Schedule
             </Link>
             <h1 className="mt-2 text-xl font-bold">Admin</h1>
-            <p className="text-sm text-[var(--muted)]">Log in to manage classes, bookings, and email.</p>
+            <p className="text-sm text-[var(--muted-foreground)]">Log in to manage classes, bookings, and email.</p>
           </div>
         </header>
         <main className="mx-auto max-w-6xl px-6 py-8">
@@ -61,11 +61,11 @@ export default async function AdminPage() {
       <header className="border-b border-stone-200/60">
         <div className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
           <div>
-            <Link href="/schedule" className="text-sm text-[var(--muted)] hover:text-[var(--foreground)]">
+            <Link href="/schedule" className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
               &larr; Schedule
             </Link>
             <h1 className="mt-2 text-xl font-bold">Admin</h1>
-            <p className="text-sm text-[var(--muted)]">Manage classes, bookings, and email.</p>
+            <p className="text-sm text-[var(--muted-foreground)]">Manage classes, bookings, and email.</p>
           </div>
           <AdminLogoutButton />
         </div>

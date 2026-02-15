@@ -9,7 +9,7 @@ export function AdminLoginForm() {
   return (
     <form action={formAction} className="rounded-xl border border-stone-200/60 bg-white/80 p-6 max-w-sm">
       <h2 className="text-lg font-semibold">Admin login</h2>
-      <p className="mt-1 text-sm text-[var(--muted)]">Enter the admin password to continue.</p>
+      <p className="mt-1 text-sm text-[var(--muted-foreground)]">Enter the admin password to continue.</p>
       <div className="mt-4">
         <label htmlFor="adminPassword" className="block text-sm font-medium text-[var(--foreground)]">
           Password

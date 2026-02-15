@@ -51,7 +51,7 @@ export function EmailTab({ subscriberCount }: EmailTabProps) {
     <div className="mt-4">
       <div className="mb-4">
         <h2 className="text-lg font-semibold">Email broadcast</h2>
-        <p className="text-sm text-[var(--muted)]">
+        <p className="text-sm text-[var(--muted-foreground)]">
           {subscriberCount === 0
             ? "No subscribers yet."
             : `Send an email to ${subscriberCount} subscriber${subscriberCount === 1 ? "" : "s"}.`}
