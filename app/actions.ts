@@ -147,6 +147,146 @@ export async function addClass(prevState: AddClassState, formData: FormData): Pr
   redirect("/admin");
 }
 
+export async function updateClass(prevState: AddClassState, formData: FormData): Promise<AddClassState> {
+  const { hasAdminSession } = await import("@/lib/admin-auth");
+  if (!(await hasAdminSession())) {
+    return { message: "Session expired. Please log in again.", success: false };
+  }
+
+  const classId = formData.get("class_id")?.toString();
+  const name = formData.get("name")?.toString()?.trim();
+  const type = formData.get("type")?.toString()?.trim();
+  const instructor = formData.get("instructor")?.toString()?.trim();
+  const classDate = formData.get("class_date")?.toString();
+  const classTime = formData.get("class_time")?.toString();
+  const durationMinutes = parseInt(formData.get("duration_minutes")?.toString() ?? "60", 10);
+  const capacity = parseInt(formData.get("capacity")?.toString() ?? "12", 10);
+  const priceDollars = parseFloat(formData.get("price_dollars")?.toString() ?? "35");
+  const priceCents = Math.round(priceDollars * 100);
+  const description = formData.get("description")?.toString()?.trim() ?? null;
+
+  if (!classId || !name || !type || !instructor || !classDate || !classTime) {
+    return { message: "Please fill in all required fields.", success: false };
+  }
+
+  const startTime = new Date(`${classDate}T${classTime}`);
+  if (Number.isNaN(startTime.getTime())) {
+    return { message: "Invalid date or time.", success: false };
+  }
+
+  const { createAdminClient } = await import("@/lib/supabase/admin");
+  const supabase = createAdminClient();
+
+  const { error } = await supabase
+    .from("classes")
+    .update({
+      name,
+      type,
+      instructor,
+      start_time: startTime.toISOString(),
+      duration_minutes: durationMinutes,
+      capacity,
+      price_cents: priceCents,
+      description,
+    })
+    .eq("id", classId);
+
+  if (error) {
+    console.error("Update class error:", error);
+    return { message: "Failed to update class. Try again.", success: false };
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/schedule");
+  return { message: "Class updated.", success: true };
+}
+
+export async function deleteClass(classId: string): Promise<{ message: string; success: boolean }> {
+  const { hasAdminSession } = await import("@/lib/admin-auth");
+  if (!(await hasAdminSession())) {
+    return { message: "Session expired. Please log in again.", success: false };
+  }
+
+  const { createAdminClient } = await import("@/lib/supabase/admin");
+  const supabase = createAdminClient();
+
+  const { error } = await supabase.from("classes").delete().eq("id", classId);
+
+  if (error) {
+    console.error("Delete class error:", error);
+    return { message: "Failed to delete class. Try again.", success: false };
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/schedule");
+  return { message: "Class deleted.", success: true };
+}
+
+export async function cancelBooking(bookingId: string): Promise<{ message: string; success: boolean }> {
+  const { hasAdminSession } = await import("@/lib/admin-auth");
+  if (!(await hasAdminSession())) {
+    return { message: "Session expired. Please log in again.", success: false };
+  }
+
+  const { createAdminClient } = await import("@/lib/supabase/admin");
+  const supabase = createAdminClient();
+
+  const { error } = await supabase
+    .from("bookings")
+    .update({ status: "cancelled", cancelled_at: new Date().toISOString() })
+    .eq("id", bookingId);
+
+  if (error) {
+    console.error("Cancel booking error:", error);
+    return { message: "Failed to cancel booking. Try again.", success: false };
+  }
+
+  revalidatePath("/admin");
+  return { message: "Booking cancelled.", success: true };
+}
+
+export type BroadcastState = { message: string; success: boolean };
+
+export async function sendBroadcast(prevState: BroadcastState, formData: FormData): Promise<BroadcastState> {
+  const { hasAdminSession } = await import("@/lib/admin-auth");
+  if (!(await hasAdminSession())) {
+    return { message: "Session expired. Please log in again.", success: false };
+  }
+
+  const subject = formData.get("subject")?.toString()?.trim();
+  const body = formData.get("body")?.toString()?.trim();
+
+  if (!subject || !body) {
+    return { message: "Please fill in subject and body.", success: false };
+  }
+
+  const { createAdminClient } = await import("@/lib/supabase/admin");
+  const supabase = createAdminClient();
+
+  const { data: subscribers, error: fetchError } = await supabase
+    .from("email_signups")
+    .select("email");
+
+  if (fetchError) {
+    console.error("Fetch subscribers error:", fetchError);
+    return { message: "Failed to fetch subscribers.", success: false };
+  }
+
+  if (!subscribers || subscribers.length === 0) {
+    return { message: "No subscribers to send to.", success: false };
+  }
+
+  const emails = subscribers.map((s) => s.email);
+  const { sendBroadcastEmail } = await import("@/lib/resend");
+  const result = await sendBroadcastEmail({ emails, subject, body });
+
+  if (!result.ok) {
+    return { message: result.error ?? "Failed to send broadcast.", success: false };
+  }
+
+  return { message: `Broadcast sent to ${emails.length} subscriber${emails.length === 1 ? "" : "s"}.`, success: true };
+}
+
 export type VerifyAdminState = { message: string };
 
 export async function verifyAdminPasswordAction(

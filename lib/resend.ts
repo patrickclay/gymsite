@@ -62,3 +62,37 @@ export async function sendReservationConfirmation(params: SendConfirmationParams
   }
   return { ok: true as const };
 }
+
+export type SendBroadcastParams = {
+  emails: string[];
+  subject: string;
+  body: string;
+};
+
+export async function sendBroadcastEmail(params: SendBroadcastParams) {
+  if (!resend) {
+    console.warn("RESEND_API_KEY not set; skipping broadcast email");
+    return { ok: false as const, error: "Email not configured" };
+  }
+
+  const { emails, subject, body } = params;
+  const html = body
+    .split("\n")
+    .map((line) => (line.trim() ? `<p>${line}</p>` : ""))
+    .join("\n");
+
+  const { error } = await resend.batch.send(
+    emails.map((to) => ({
+      from: FROM_EMAIL,
+      to,
+      subject,
+      html,
+    }))
+  );
+
+  if (error) {
+    console.error("Resend broadcast error:", error);
+    return { ok: false as const, error: error.message };
+  }
+  return { ok: true as const };
+}
