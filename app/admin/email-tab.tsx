@@ -19,9 +19,16 @@ export function EmailTab({ subscriberCount }: EmailTabProps) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [previewSubject, setPreviewSubject] = useState("");
   const [previewBody, setPreviewBody] = useState("");
-  const pendingFormData = useRef<FormData | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const confirmedRef = useRef(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // After user confirms, let the form action run normally
+    if (confirmedRef.current) {
+      confirmedRef.current = false;
+      return;
+    }
+
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const subject = fd.get("subject")?.toString() ?? "";
@@ -29,18 +36,15 @@ export function EmailTab({ subscriberCount }: EmailTabProps) {
 
     if (!subject.trim() || !body.trim()) return;
 
-    pendingFormData.current = fd;
     setPreviewSubject(subject);
     setPreviewBody(body);
     setConfirmOpen(true);
   }
 
   function handleConfirmSend() {
-    if (pendingFormData.current) {
-      formAction(pendingFormData.current);
-      pendingFormData.current = null;
-      setConfirmOpen(false);
-    }
+    setConfirmOpen(false);
+    confirmedRef.current = true;
+    formRef.current?.requestSubmit();
   }
 
   return (
@@ -54,7 +58,7 @@ export function EmailTab({ subscriberCount }: EmailTabProps) {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4 max-w-xl">
+      <form ref={formRef} action={formAction} onSubmit={handleSubmit} className="space-y-4 max-w-xl">
         <div>
           <Label htmlFor="subject">Subject</Label>
           <Input id="subject" name="subject" type="text" required className="mt-1" />
