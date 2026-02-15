@@ -37,10 +37,10 @@ type AdminTabsProps = {
 export function AdminTabs({ classes, bookings, subscriberCount }: AdminTabsProps) {
   return (
     <Tabs defaultValue="classes">
-      <TabsList>
-        <TabsTrigger value="classes">Classes</TabsTrigger>
-        <TabsTrigger value="bookings">Bookings</TabsTrigger>
-        <TabsTrigger value="email">Email</TabsTrigger>
+      <TabsList variant="line" className="border-b border-[var(--border)]">
+        <TabsTrigger value="classes" className="data-[state=active]:after:bg-[var(--primary)]">Classes</TabsTrigger>
+        <TabsTrigger value="bookings" className="data-[state=active]:after:bg-[var(--primary)]">Bookings</TabsTrigger>
+        <TabsTrigger value="email" className="data-[state=active]:after:bg-[var(--primary)]">Email</TabsTrigger>
       </TabsList>
 
       <TabsContent value="classes">
