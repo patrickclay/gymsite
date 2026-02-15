@@ -9,12 +9,43 @@ export const metadata = {
 };
 
 export default async function SchedulePage() {
-  const supabase = createServerClient();
-  const { data: classes } = await supabase
-    .from("classes")
-    .select("id, name, type, instructor, start_time, duration_minutes, capacity, price_cents")
-    .gte("start_time", new Date().toISOString())
-    .order("start_time", { ascending: true });
+  let classes: { id: string; name: string; type: string; instructor: string; start_time: string; duration_minutes: number; capacity: number; price_cents: number }[] | null = null;
+
+  // #region agent log
+  console.log("[schedule-debug] entry", { hasUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL, hasKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, urlPrefix: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 25) });
+  fetch('http://127.0.0.1:7242/ingest/7f2feb5a-28b8-4c93-a204-e6a662cc8d3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'schedule/page.tsx:entry',message:'SchedulePage entry',data:{hasUrl:!!process.env.NEXT_PUBLIC_SUPABASE_URL,hasKey:!!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY},timestamp:Date.now(),hypothesisId:'B'})}).catch(()=>{});
+  // #endregion
+
+  try {
+    const supabase = createServerClient();
+
+    // #region agent log
+    console.log("[schedule-debug] client created ok");
+    fetch('http://127.0.0.1:7242/ingest/7f2feb5a-28b8-4c93-a204-e6a662cc8d3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'schedule/page.tsx:afterClient',message:'Client created',data:{},timestamp:Date.now(),hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
+
+    const { data, error } = await supabase
+      .from("classes")
+      .select("id, name, type, instructor, start_time, duration_minutes, capacity, price_cents")
+      .gte("start_time", new Date().toISOString())
+      .order("start_time", { ascending: true });
+
+    // #region agent log
+    console.log("[schedule-debug] query result", { hasData: !!data, len: data?.length ?? 0, hasError: !!error, errMsg: error?.message, errCode: error?.code });
+    fetch('http://127.0.0.1:7242/ingest/7f2feb5a-28b8-4c93-a204-e6a662cc8d3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'schedule/page.tsx:afterQuery',message:'Query result',data:{hasData:!!data,len:data?.length??0,hasError:!!error,errMsg:error?.message,errCode:error?.code},timestamp:Date.now(),hypothesisId:'A,C'})}).catch(()=>{});
+    // #endregion
+
+    if (error) {
+      console.error("[schedule-debug] Supabase query error:", error);
+    } else {
+      classes = data;
+    }
+  } catch (e) {
+    // #region agent log
+    console.error("[schedule-debug] EXCEPTION:", e instanceof Error ? e.message : String(e));
+    fetch('http://127.0.0.1:7242/ingest/7f2feb5a-28b8-4c93-a204-e6a662cc8d3f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'schedule/page.tsx:catch',message:'Exception',data:{err:e instanceof Error ? e.message : String(e)},timestamp:Date.now(),hypothesisId:'B,D'})}).catch(()=>{});
+    // #endregion
+  }
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
