@@ -34,7 +34,6 @@ const daysOfWeek = [
 ] as const;
 
 export default function LocationPage() {
-  const fullAddress = `${address.street}, ${address.city}, ${address.state} ${address.zip}`;
   const mapSrc = `https://maps.google.com/maps?q=${geo.lat},${geo.lng}&z=14&output=embed`;
 
   return (

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: siteConfig.seo.titleTemplate,
   },
   description: siteConfig.seo.defaultDescription,
-  keywords: siteConfig.seo.keywords,
+  keywords: [...siteConfig.seo.keywords],
   openGraph: {
     title: siteConfig.seo.defaultTitle,
     description: siteConfig.seo.defaultDescription,
