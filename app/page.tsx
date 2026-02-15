@@ -5,16 +5,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Hero */}
-      <header className="relative overflow-hidden border-b border-stone-200/60">
+      <header className="relative overflow-hidden border-b border-stone-200/60" style={{ backgroundColor: "#e8e4df" }}>
         <div className="absolute inset-0 bg-gradient-to-br from-stone-900/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-24">
           <div className="mb-4 flex items-center justify-between">
             <p className="text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
               Coming Soon &middot; Atlanta Area
             </p>
-            <Link href="/schedule" className="text-sm font-medium text-[var(--foreground)] hover:text-[var(--accent)]">
-              Schedule
-            </Link>
           </div>
           <h1 className="max-w-3xl font-bold tracking-tight text-[var(--foreground)] text-4xl sm:text-5xl lg:text-6xl">
             You&apos;ve been looking for a fitness program that actually sees you.
@@ -22,11 +19,13 @@ export default function Home() {
           <p className="mt-6 max-w-xl text-lg text-[var(--muted)]">
             We spent 20+ years coaching in other people&apos;s spaces. Now we&apos;re building our own—and we&apos;re building it with you. A place where coaches know your name, your goals, and what you need to get there.
           </p>
-
-          {/* Email capture - above fold */}
-          <div className="mt-10">
-            <EmailSignupForm buttonText="Be Part of It from Day One" />
-          </div>
+          <Link
+            href="/schedule"
+            className="mt-8 inline-block rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#c45c26" }}
+          >
+            View schedule &amp; reserve your spot
+          </Link>
         </div>
       </header>
 
@@ -52,12 +51,6 @@ export default function Home() {
         <p className="mt-2 text-[var(--muted)]">
           Every class is small enough that your coaches know your name by day one.
         </p>
-        <Link
-          href="/schedule"
-          className="mt-4 inline-block text-sm font-semibold text-[var(--accent)] hover:underline"
-        >
-          See upcoming classes and reserve your spot →
-        </Link>
         <div className="mt-8 sm:mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
