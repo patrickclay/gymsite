@@ -69,6 +69,14 @@ export type SendBroadcastParams = {
   body: string;
 };
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function sendBroadcastEmail(params: SendBroadcastParams) {
   if (!resend) {
     console.warn("RESEND_API_KEY not set; skipping broadcast email");
@@ -78,21 +86,26 @@ export async function sendBroadcastEmail(params: SendBroadcastParams) {
   const { emails, subject, body } = params;
   const html = body
     .split("\n")
-    .map((line) => (line.trim() ? `<p>${line}</p>` : ""))
+    .map((line) => (line.trim() ? `<p>${escapeHtml(line)}</p>` : ""))
     .join("\n");
 
-  const { error } = await resend.batch.send(
-    emails.map((to) => ({
-      from: FROM_EMAIL,
-      to,
-      subject,
-      html,
-    }))
-  );
+  try {
+    const { error } = await resend.batch.send(
+      emails.map((to) => ({
+        from: FROM_EMAIL,
+        to,
+        subject,
+        html,
+      }))
+    );
 
-  if (error) {
-    console.error("Resend broadcast error:", error);
-    return { ok: false as const, error: error.message };
+    if (error) {
+      console.error("Resend broadcast error:", error);
+      return { ok: false as const, error: error.message };
+    }
+    return { ok: true as const };
+  } catch (err) {
+    console.error("Broadcast send error:", err);
+    return { ok: false as const, error: "Unexpected error sending email" };
   }
-  return { ok: true as const };
 }

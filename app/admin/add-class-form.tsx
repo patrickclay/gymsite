@@ -3,6 +3,9 @@
 import { useActionState, useEffect } from "react";
 import { addClass, updateClass } from "@/app/actions";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import type { ClassRow } from "./admin-tabs";
 
 // 15-min slots from 5:00 AM to 10:00 PM, value = 24h "HH:mm"
@@ -52,60 +55,60 @@ export function AddClassForm({ editMode, classData, onSuccess }: AddClassFormPro
       )}
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium">Class name</label>
-          <input
+          <Label htmlFor="name">Class name</Label>
+          <Input
             id="name"
             name="name"
             type="text"
             required
             defaultValue={classData?.name}
-            className="mt-1 w-full rounded-lg border border-stone-300 bg-white px-4 py-2"
+            className="mt-1"
           />
         </div>
         <div>
-          <label htmlFor="type" className="block text-sm font-medium">Type</label>
-          <input
+          <Label htmlFor="type">Type</Label>
+          <Input
             id="type"
             name="type"
             type="text"
             required
             placeholder="e.g. Strength, Kickboxing, Somatic"
             defaultValue={classData?.type}
-            className="mt-1 w-full rounded-lg border border-stone-300 bg-white px-4 py-2"
+            className="mt-1"
           />
         </div>
       </div>
       <div>
-        <label htmlFor="instructor" className="block text-sm font-medium">Instructor</label>
-        <input
+        <Label htmlFor="instructor">Instructor</Label>
+        <Input
           id="instructor"
           name="instructor"
           type="text"
           required
           defaultValue={classData?.instructor}
-          className="mt-1 w-full max-w-xs rounded-lg border border-stone-300 bg-white px-4 py-2"
+          className="mt-1 max-w-xs"
         />
       </div>
       <div className="grid gap-4 sm:grid-cols-3">
         <div>
-          <label htmlFor="class_date" className="block text-sm font-medium">Date</label>
-          <input
+          <Label htmlFor="class_date">Date</Label>
+          <Input
             id="class_date"
             name="class_date"
             type="date"
             required
             defaultValue={defaultDate}
-            className="mt-1 w-full rounded-lg border border-stone-300 bg-white px-4 py-2"
+            className="mt-1"
           />
         </div>
         <div>
-          <label htmlFor="class_time" className="block text-sm font-medium">Time</label>
+          <Label htmlFor="class_time">Time</Label>
           <select
             id="class_time"
             name="class_time"
             required
             defaultValue={defaultTime}
-            className="mt-1 w-full rounded-lg border border-stone-300 bg-white px-4 py-2"
+            className="mt-1 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           >
             {TIME_OPTIONS.map(({ value, label }) => (
               <option key={value} value={value}>{label}</option>
@@ -113,12 +116,12 @@ export function AddClassForm({ editMode, classData, onSuccess }: AddClassFormPro
           </select>
         </div>
         <div>
-          <label htmlFor="duration_minutes" className="block text-sm font-medium">Duration</label>
+          <Label htmlFor="duration_minutes">Duration</Label>
           <select
             id="duration_minutes"
             name="duration_minutes"
             defaultValue={classData?.duration_minutes ?? 60}
-            className="mt-1 w-full rounded-lg border border-stone-300 bg-white px-4 py-2"
+            className="mt-1 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           >
             <option value={30}>30 minutes</option>
             <option value={45}>45 minutes</option>
@@ -127,36 +130,36 @@ export function AddClassForm({ editMode, classData, onSuccess }: AddClassFormPro
         </div>
       </div>
       <div>
-        <label htmlFor="capacity" className="block text-sm font-medium">Capacity</label>
-        <input
+        <Label htmlFor="capacity">Capacity</Label>
+        <Input
           id="capacity"
           name="capacity"
           type="number"
           defaultValue={classData?.capacity ?? 12}
           min={1}
-          className="mt-1 w-full max-w-xs rounded-lg border border-stone-300 bg-white px-4 py-2"
+          className="mt-1 max-w-xs"
         />
       </div>
       <div>
-        <label htmlFor="price_dollars" className="block text-sm font-medium">Price ($)</label>
-        <input
+        <Label htmlFor="price_dollars">Price ($)</Label>
+        <Input
           id="price_dollars"
           name="price_dollars"
           type="number"
           defaultValue={defaultPriceDollars}
           min={0}
           step="0.01"
-          className="mt-1 w-full max-w-xs rounded-lg border border-stone-300 bg-white px-4 py-2"
+          className="mt-1 max-w-xs"
         />
       </div>
       <div>
-        <label htmlFor="description" className="block text-sm font-medium">Description (optional)</label>
-        <textarea
+        <Label htmlFor="description">Description (optional)</Label>
+        <Textarea
           id="description"
           name="description"
           rows={4}
           defaultValue={classData?.description ?? ""}
-          className="mt-1 w-full rounded-lg border border-stone-300 bg-white px-4 py-2 resize-y"
+          className="mt-1 resize-y"
         />
       </div>
       <Button type="submit">

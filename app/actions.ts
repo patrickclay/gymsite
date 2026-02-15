@@ -144,7 +144,7 @@ export async function addClass(prevState: AddClassState, formData: FormData): Pr
   }
   revalidatePath("/admin");
   revalidatePath("/schedule");
-  redirect("/admin");
+  return { message: "Class added.", success: true };
 }
 
 export async function updateClass(prevState: AddClassState, formData: FormData): Promise<AddClassState> {
