@@ -86,7 +86,7 @@ export function EmailTab({ subscriberCount }: EmailTabProps) {
               This will send an email to {subscriberCount} subscriber{subscriberCount === 1 ? "" : "s"}. Please review the content below.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-2 rounded-lg border border-stone-200 bg-stone-50 p-4 text-sm">
+          <div className="space-y-2 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm">
             <p><strong>Subject:</strong> {previewSubject}</p>
             <p className="whitespace-pre-wrap"><strong>Body:</strong> {previewBody}</p>
           </div>

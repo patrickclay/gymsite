@@ -62,7 +62,7 @@ export function BookingsTab({ bookings, classes }: BookingsTabProps) {
         <select
           value={filterClassId}
           onChange={(e) => setFilterClassId(e.target.value)}
-          className="rounded-lg border border-stone-300 bg-white px-3 py-1.5 text-sm"
+          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm"
         >
           <option value="all">All classes</option>
           {classOptions.map((c) => (
@@ -100,7 +100,7 @@ export function BookingsTab({ bookings, classes }: BookingsTabProps) {
                   })
                 : "";
               return (
-                <TableRow key={b.id} className="even:bg-stone-50/50">
+                <TableRow key={b.id} className="even:bg-slate-50/50">
                   <TableCell className="font-medium">{b.customer_name}</TableCell>
                   <TableCell>{b.customer_email}</TableCell>
                   <TableCell>{b.customer_phone ?? "-"}</TableCell>
@@ -112,7 +112,7 @@ export function BookingsTab({ bookings, classes }: BookingsTabProps) {
                       className={
                         b.status === "confirmed"
                           ? "bg-green-100 text-green-700 border-green-200"
-                          : "bg-stone-100 text-stone-500 border-stone-200"
+                          : "bg-slate-100 text-slate-500 border-slate-200"
                       }
                     >
                       {b.status}

@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 export function SiteFooter() {
   const { business, footer } = siteConfig;
   return (
-    <footer className="border-t border-stone-200/60 bg-[var(--background)] py-8">
+    <footer className="border-t border-slate-200/60 bg-[var(--background)] py-8">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -44,7 +44,7 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <div className="mt-8 border-t border-stone-200/60 pt-6">
+        <div className="mt-8 border-t border-slate-200/60 pt-6">
           <p className="text-xs text-[var(--muted)]">&copy; {new Date().getFullYear()} {footer.legalName}. All rights reserved.</p>
         </div>
       </div>

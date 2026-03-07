@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
       />
 
       {/* Back link + header */}
-      <header className="border-b border-stone-200/60">
+      <header className="border-b border-slate-200/60">
         <div className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
           <Link
             href="/blog"
@@ -104,7 +104,7 @@ export default async function BlogPostPage({ params }: Props) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-block rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]"
+                  className="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]"
                 >
                   {tag}
                 </span>
@@ -116,7 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* MDX content */}
       <article className="mx-auto max-w-3xl px-6 py-12 sm:py-16 lg:py-20">
-        <div className="rounded-xl border border-stone-200/60 bg-white/80 p-6 sm:p-10 backdrop-blur-sm">
+        <div className="rounded-xl border border-slate-200/60 bg-white/80 p-6 sm:p-10 backdrop-blur-sm">
           <div
             className={[
               /* Headings */
@@ -127,19 +127,19 @@ export default async function BlogPostPage({ params }: Props) {
               /* Paragraphs */
               "[&_p]:text-base [&_p]:leading-7 [&_p]:text-[var(--foreground)] [&_p]:mb-4",
               /* Links */
-              "[&_a]:text-[#c45c26] [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:opacity-80 [&_a]:transition-opacity",
+              "[&_a]:text-[#3b82f6] [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:opacity-80 [&_a]:transition-opacity",
               /* Lists */
               "[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ul]:space-y-1",
               "[&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_ol]:space-y-1",
               "[&_li]:text-base [&_li]:leading-7 [&_li]:text-[var(--foreground)]",
               /* Blockquotes */
-              "[&_blockquote]:border-l-4 [&_blockquote]:border-[#c45c26] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[var(--muted)] [&_blockquote]:my-6",
+              "[&_blockquote]:border-l-4 [&_blockquote]:border-[#3b82f6] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[var(--muted)] [&_blockquote]:my-6",
               /* Code */
-              "[&_code]:rounded [&_code]:bg-stone-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:font-mono",
-              "[&_pre]:rounded-lg [&_pre]:bg-stone-900 [&_pre]:text-stone-100 [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:mb-4",
+              "[&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:font-mono",
+              "[&_pre]:rounded-lg [&_pre]:bg-slate-900 [&_pre]:text-slate-100 [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:mb-4",
               "[&_pre_code]:bg-transparent [&_pre_code]:p-0",
               /* Horizontal rule */
-              "[&_hr]:my-8 [&_hr]:border-stone-200",
+              "[&_hr]:my-8 [&_hr]:border-slate-200",
               /* Images */
               "[&_img]:rounded-lg [&_img]:my-6",
               /* Strong / em */

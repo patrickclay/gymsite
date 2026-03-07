@@ -11,7 +11,7 @@ export function SiteHeader() {
   ];
 
   return (
-    <nav className="border-b border-stone-200/60 bg-[var(--background)]">
+    <nav className="border-b border-slate-200/60 bg-[var(--background)]">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="text-lg font-bold tracking-tight text-[var(--foreground)]">
           {siteConfig.business.name}
@@ -29,7 +29,7 @@ export function SiteHeader() {
           <Link
             href="/schedule"
             className="rounded-lg px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#c45c26" }}
+            style={{ backgroundColor: "#3b82f6" }}
           >
             Book a class
           </Link>

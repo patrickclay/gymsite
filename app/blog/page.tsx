@@ -3,22 +3,22 @@ import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
-  title: "Blog | Seen Fitness — Lilburn, GA",
+  title: "Blog | Neighbor Fit — Lilburn, GA",
   description:
-    "Fitness tips, training insights, and community stories from Seen Fitness in Lilburn, GA. Stay informed on strength, kickboxing, somatic movement, and local wellness.",
+    "Fitness tips, training insights, and community stories from Neighbor Fit in Lilburn, GA. Stay informed on strength, kickboxing, somatic movement, and local wellness.",
   openGraph: {
-    title: "Blog | Seen Fitness — Lilburn, GA",
+    title: "Blog | Neighbor Fit — Lilburn, GA",
     description:
-      "Fitness tips, training insights, and community stories from Seen Fitness in Lilburn, GA. Stay informed on strength, kickboxing, somatic movement, and local wellness.",
+      "Fitness tips, training insights, and community stories from Neighbor Fit in Lilburn, GA. Stay informed on strength, kickboxing, somatic movement, and local wellness.",
     url: "/blog",
     type: "website",
     images: [siteConfig.seo.ogImage],
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "Blog | Seen Fitness — Lilburn, GA",
+    title: "Blog | Neighbor Fit — Lilburn, GA",
     description:
-      "Fitness tips, training insights, and community stories from Seen Fitness in Lilburn, GA. Stay informed on strength, kickboxing, somatic movement, and local wellness.",
+      "Fitness tips, training insights, and community stories from Neighbor Fit in Lilburn, GA. Stay informed on strength, kickboxing, somatic movement, and local wellness.",
   },
 };
 
@@ -37,7 +37,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Page header */}
-      <header className="border-b border-stone-200/60">
+      <header className="border-b border-slate-200/60">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-[var(--foreground)]">
             Blog
@@ -63,7 +63,7 @@ export default function BlogPage() {
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="flex flex-col rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm"
+                className="flex flex-col rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm"
               >
                 {/* Date */}
                 <time
@@ -96,7 +96,7 @@ export default function BlogPage() {
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-block rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]"
+                        className="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]"
                       >
                         {tag}
                       </span>

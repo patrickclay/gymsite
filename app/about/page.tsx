@@ -4,19 +4,19 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata = {
   title: "About Us",
   description:
-    "The story behind Seen Fitness — two coaches building a gym where every person is known, coached, and challenged. Small group fitness in Lilburn, Gwinnett County.",
+    "The story behind Neighbor Fit — two coaches building a gym where every person is known, coached, and challenged. Small group fitness in Lilburn, Gwinnett County.",
   openGraph: {
-    title: "About Us | Seen Fitness",
+    title: "About Us | Neighbor Fit",
     description:
-      "The story behind Seen Fitness — two coaches building a gym where every person is known, coached, and challenged. Small group fitness in Lilburn, Gwinnett County.",
+      "The story behind Neighbor Fit — two coaches building a gym where every person is known, coached, and challenged. Small group fitness in Lilburn, Gwinnett County.",
     url: "/about",
     type: "website",
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "About Us | Seen Fitness",
+    title: "About Us | Neighbor Fit",
     description:
-      "The story behind Seen Fitness — two coaches building a gym where every person is known, coached, and challenged. Small group fitness in Lilburn, Gwinnett County.",
+      "The story behind Neighbor Fit — two coaches building a gym where every person is known, coached, and challenged. Small group fitness in Lilburn, Gwinnett County.",
   },
 };
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Hero */}
-      <header className="border-b border-stone-200/60">
+      <header className="border-b border-slate-200/60">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
           <Link
             href="/"
@@ -55,7 +55,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="border-y border-stone-200/60 bg-stone-100/50">
+      <section className="border-y border-slate-200/60 bg-slate-100/50">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
           <p className="text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
             Our mission
@@ -79,7 +79,7 @@ export default function AboutPage() {
           {instructors.map((instructor) => (
             <div
               key={instructor.slug}
-              className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm"
+              className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm"
             >
               <p className="text-sm font-medium text-[var(--accent)]">
                 {instructor.role}
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 {instructor.specialties.map((specialty) => (
                   <span
                     key={specialty}
-                    className="rounded-full border border-stone-200/60 bg-stone-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]"
+                    className="rounded-full border border-slate-200/60 bg-slate-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]"
                   >
                     {specialty}
                   </span>
@@ -106,7 +106,7 @@ export default function AboutPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="border-t border-stone-200/60 bg-stone-100/50">
+      <section className="border-t border-slate-200/60 bg-slate-100/50">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20 text-center">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Ready to be seen?
@@ -117,7 +117,7 @@ export default function AboutPage() {
           <Link
             href="/schedule"
             className="mt-6 inline-block rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#c45c26" }}
+            style={{ backgroundColor: "#3b82f6" }}
           >
             View schedule &amp; book a class
           </Link>

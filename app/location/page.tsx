@@ -7,19 +7,19 @@ const { address, phone, email, hours, geo } = business;
 export const metadata = {
   title: "Location & Hours",
   description:
-    "Find Seen Fitness in Lilburn, GA — gym near me Lilburn. View hours, directions, parking info, and neighborhoods we serve across Gwinnett County.",
+    "Find Neighbor Fit in Lilburn, GA — gym near me Lilburn. View hours, directions, parking info, and neighborhoods we serve across Gwinnett County.",
   openGraph: {
-    title: "Location & Hours | Seen Fitness",
+    title: "Location & Hours | Neighbor Fit",
     description:
-      "Find Seen Fitness in Lilburn, GA — gym near me Lilburn. View hours, directions, parking info, and neighborhoods we serve across Gwinnett County.",
+      "Find Neighbor Fit in Lilburn, GA — gym near me Lilburn. View hours, directions, parking info, and neighborhoods we serve across Gwinnett County.",
     url: "/location",
     type: "website",
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "Location & Hours | Seen Fitness",
+    title: "Location & Hours | Neighbor Fit",
     description:
-      "Find Seen Fitness in Lilburn, GA — gym near me Lilburn. View hours, directions, parking info, and neighborhoods we serve across Gwinnett County.",
+      "Find Neighbor Fit in Lilburn, GA — gym near me Lilburn. View hours, directions, parking info, and neighborhoods we serve across Gwinnett County.",
   },
 };
 
@@ -39,7 +39,7 @@ export default function LocationPage() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Hero */}
-      <header className="border-b border-stone-200/60">
+      <header className="border-b border-slate-200/60">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
           <Link
             href="/"
@@ -97,7 +97,7 @@ export default function LocationPage() {
             </div>
 
             {/* Parking */}
-            <div className="mt-8 rounded-xl border border-stone-200/60 bg-stone-100/50 p-5">
+            <div className="mt-8 rounded-xl border border-slate-200/60 bg-slate-100/50 p-5">
               <p className="text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
                 Parking
               </p>
@@ -112,13 +112,13 @@ export default function LocationPage() {
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
               Hours of operation
             </h2>
-            <div className="mt-6 overflow-hidden rounded-xl border border-stone-200/60 bg-white/80 backdrop-blur-sm">
+            <div className="mt-6 overflow-hidden rounded-xl border border-slate-200/60 bg-white/80 backdrop-blur-sm">
               <table className="w-full text-left">
                 <tbody>
                   {daysOfWeek.map((day) => (
                     <tr
                       key={day}
-                      className="border-b border-stone-200/60 last:border-b-0"
+                      className="border-b border-slate-200/60 last:border-b-0"
                     >
                       <td className="px-5 py-3.5 font-medium capitalize text-[var(--foreground)]">
                         {day}
@@ -137,7 +137,7 @@ export default function LocationPage() {
 
       {/* Google Maps Embed */}
       <section className="mx-auto max-w-6xl px-6 pb-12 sm:pb-16">
-        <div className="overflow-hidden rounded-xl border border-stone-200/60">
+        <div className="overflow-hidden rounded-xl border border-slate-200/60">
           <iframe
             title={`${business.name} location on Google Maps`}
             src={mapSrc}
@@ -160,7 +160,7 @@ export default function LocationPage() {
       </section>
 
       {/* Neighborhoods */}
-      <section className="border-y border-stone-200/60 bg-stone-100/50">
+      <section className="border-y border-slate-200/60 bg-slate-100/50">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Neighborhoods we serve
@@ -173,13 +173,13 @@ export default function LocationPage() {
             {neighborhoods.map((n) => (
               <div
                 key={n.name}
-                className="rounded-xl border border-stone-200/60 bg-white/80 p-5 backdrop-blur-sm"
+                className="rounded-xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-sm"
               >
                 <div className="flex items-start justify-between gap-3">
                   <h3 className="text-lg font-semibold text-[var(--foreground)]">
                     {n.name}
                   </h3>
-                  <span className="shrink-0 rounded-full border border-stone-200/60 bg-stone-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]">
+                  <span className="shrink-0 rounded-full border border-slate-200/60 bg-slate-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]">
                     {n.driveTime}
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export default function LocationPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="border-t border-stone-200/60 bg-stone-100/50">
+      <section className="border-t border-slate-200/60 bg-slate-100/50">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20 text-center">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Ready to visit?
@@ -204,7 +204,7 @@ export default function LocationPage() {
           <Link
             href="/schedule"
             className="mt-6 inline-block rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#c45c26" }}
+            style={{ backgroundColor: "#3b82f6" }}
           >
             View schedule &amp; book a class
           </Link>

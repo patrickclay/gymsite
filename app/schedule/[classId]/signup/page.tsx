@@ -144,7 +144,7 @@ export default async function SignupPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
       />
-      <header className="border-b border-stone-200/60">
+      <header className="border-b border-slate-200/60">
         <div className="mx-auto max-w-6xl px-6 py-6">
           <Link
             href="/schedule"
@@ -156,7 +156,7 @@ export default async function SignupPage({
       </header>
 
       <main className="mx-auto max-w-2xl px-6 py-10 sm:py-12">
-        <div className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm">
+        <div className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm">
           <p className="text-sm font-medium text-[var(--accent)]">{classRow.type}</p>
           <h1 className="mt-1 text-2xl font-bold tracking-tight">{classRow.name}</h1>
           <p className="mt-2 text-[var(--muted)]">{classRow.instructor}</p>

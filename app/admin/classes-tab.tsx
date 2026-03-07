@@ -92,7 +92,7 @@ export function ClassesTab({ classes }: ClassesTabProps) {
               });
               const price = (c.price_cents / 100).toFixed(0);
               return (
-                <TableRow key={c.id} className="even:bg-stone-50/50">
+                <TableRow key={c.id} className="even:bg-slate-50/50">
                   <TableCell className="font-medium">{c.name}</TableCell>
                   <TableCell>{c.type}</TableCell>
                   <TableCell>{c.instructor}</TableCell>

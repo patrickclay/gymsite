@@ -7,7 +7,7 @@ export function AdminLoginForm() {
   const [state, formAction] = useActionState(verifyAdminPasswordAction, { message: "" });
 
   return (
-    <form action={formAction} className="rounded-xl border border-stone-200/60 bg-white/80 p-6 max-w-sm">
+    <form action={formAction} className="rounded-xl border border-slate-200/60 bg-white/80 p-6 max-w-sm">
       <h2 className="text-lg font-semibold">Admin login</h2>
       <p className="mt-1 text-sm text-[var(--muted-foreground)]">Enter the admin password to continue.</p>
       <div className="mt-4">
@@ -20,13 +20,13 @@ export function AdminLoginForm() {
           type="password"
           required
           autoFocus
-          className="mt-1 w-full rounded-lg border border-stone-300 bg-white px-4 py-2 text-[var(--foreground)]"
+          className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-[var(--foreground)]"
         />
       </div>
       <button
         type="submit"
         className="mt-4 rounded-lg px-4 py-2 font-semibold text-white"
-        style={{ backgroundColor: "#c45c26" }}
+        style={{ backgroundColor: "#3b82f6" }}
       >
         Log in
       </button>

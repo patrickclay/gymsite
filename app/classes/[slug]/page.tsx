@@ -87,10 +87,10 @@ export default async function ClassTypePage({
 
       {/* Page header */}
       <header
-        className="relative overflow-hidden border-b border-stone-200/60"
-        style={{ backgroundColor: "#e8e4df" }}
+        className="relative overflow-hidden border-b border-slate-200/60"
+        style={{ backgroundColor: "#e2e8f0" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-900/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
           <Link
             href="/"
@@ -118,13 +118,13 @@ export default async function ClassTypePage({
         </section>
 
         {/* What to expect */}
-        <section className="border-t border-stone-200/60 bg-stone-100/50">
+        <section className="border-t border-slate-200/60 bg-slate-100/50">
           <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
               What to expect
             </h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm">
+              <div className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm">
                 <h3 className="text-lg font-semibold text-[var(--foreground)]">
                   Small class size
                 </h3>
@@ -134,7 +134,7 @@ export default async function ClassTypePage({
                   the crowd.
                 </p>
               </div>
-              <div className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm">
+              <div className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm">
                 <h3 className="text-lg font-semibold text-[var(--foreground)]">
                   Coaching that sees you
                 </h3>
@@ -144,7 +144,7 @@ export default async function ClassTypePage({
                   today.
                 </p>
               </div>
-              <div className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm">
+              <div className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm">
                 <h3 className="text-lg font-semibold text-[var(--foreground)]">
                   All levels welcome
                 </h3>
@@ -177,7 +177,7 @@ export default async function ClassTypePage({
             {nearbyNeighborhoods.map((neighborhood) => (
               <div
                 key={neighborhood.name}
-                className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm"
+                className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm"
               >
                 <h3 className="text-lg font-semibold text-[var(--foreground)]">
                   {neighborhood.name}
@@ -197,7 +197,7 @@ export default async function ClassTypePage({
         </section>
 
         {/* CTA */}
-        <section className="border-t border-stone-200/60 bg-stone-100/50">
+        <section className="border-t border-slate-200/60 bg-slate-100/50">
           <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20 text-center">
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
               Ready to try {classType.name.toLowerCase()}?
@@ -210,7 +210,7 @@ export default async function ClassTypePage({
             <Link
               href="/schedule"
               className="mt-8 inline-block rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
-              style={{ backgroundColor: "#c45c26" }}
+              style={{ backgroundColor: "#3b82f6" }}
             >
               View upcoming {classType.name.toLowerCase()} classes
             </Link>
