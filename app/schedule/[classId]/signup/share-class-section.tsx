@@ -52,7 +52,7 @@ export function ShareClassSection({ sharePayload }: ShareClassSectionProps) {
   const whatsappUrl = `https://wa.me/?text=${encodedText}`;
 
   return (
-    <div className="mt-6 rounded-xl border border-stone-200/60 bg-white/80 p-4 backdrop-blur-sm">
+    <div className="mt-6 rounded-xl border border-slate-200/60 bg-white/80 p-4 backdrop-blur-sm">
       <h2 className="text-sm font-semibold text-[var(--foreground)]">
         Share this class
       </h2>
@@ -62,7 +62,7 @@ export function ShareClassSection({ sharePayload }: ShareClassSectionProps) {
             type="button"
             onClick={handleNativeShare}
             className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#c45c26" }}
+            style={{ backgroundColor: "#3b82f6" }}
             aria-label="Share"
           >
             <Share2 className="h-4 w-4" />
@@ -73,7 +73,7 @@ export function ShareClassSection({ sharePayload }: ShareClassSectionProps) {
           type="button"
           onClick={handleCopy}
           disabled={copied}
-          className="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-stone-50 disabled:opacity-70"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-slate-50 disabled:opacity-70"
           aria-label="Copy link"
         >
           {copied ? (
@@ -87,7 +87,7 @@ export function ShareClassSection({ sharePayload }: ShareClassSectionProps) {
           href={twitterUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-stone-50"
+          className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-slate-50"
           aria-label="Share on X (Twitter)"
         >
           X
@@ -96,7 +96,7 @@ export function ShareClassSection({ sharePayload }: ShareClassSectionProps) {
           href={facebookUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-stone-50"
+          className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-slate-50"
           aria-label="Share on Facebook"
         >
           Facebook
@@ -105,7 +105,7 @@ export function ShareClassSection({ sharePayload }: ShareClassSectionProps) {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-stone-50"
+          className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-slate-50"
           aria-label="Share on WhatsApp"
         >
           WhatsApp

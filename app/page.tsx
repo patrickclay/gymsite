@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-stone-200/60" style={{ backgroundColor: "#e8e4df" }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-900/5 via-transparent to-transparent" />
+      <section className="relative overflow-hidden border-b border-slate-200/60" style={{ backgroundColor: "#e2e8f0" }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-24">
           <div className="mb-4 flex items-center justify-between">
             <p className="text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
@@ -25,7 +25,7 @@ export default function Home() {
           <Link
             href={hero.ctaHref}
             className="mt-8 inline-block rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#c45c26" }}
+            style={{ backgroundColor: "#3b82f6" }}
           >
             {hero.ctaText}
           </Link>
@@ -59,7 +59,7 @@ export default function Home() {
             <Link
               key={ct.slug}
               href={`/classes/${ct.slug}`}
-              className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm transition-shadow hover:shadow-md"
+              className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm transition-shadow hover:shadow-md"
             >
               <h3 className="text-lg font-semibold text-[var(--foreground)]">{ct.name}</h3>
               <p className="mt-2 text-[var(--muted)]">{ct.shortDescription}</p>
@@ -72,7 +72,7 @@ export default function Home() {
       </section>
 
       {/* Meet Your Coaches */}
-      <section className="border-t border-stone-200/60 bg-stone-100/50">
+      <section className="border-t border-slate-200/60 bg-slate-100/50">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Meet your coaches
@@ -84,7 +84,7 @@ export default function Home() {
             {instructors.map((instructor) => (
               <div
                 key={instructor.slug}
-                className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm"
+                className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm"
               >
                 <p className="text-lg font-semibold text-[var(--foreground)]">{instructor.name}</p>
                 <p className="text-sm font-medium text-[var(--accent)]">{instructor.role}</p>
@@ -93,7 +93,7 @@ export default function Home() {
                   {instructor.specialties.map((s) => (
                     <span
                       key={s}
-                      className="rounded-full border border-stone-200/60 px-3 py-1 text-xs font-medium text-[var(--muted)]"
+                      className="rounded-full border border-slate-200/60 px-3 py-1 text-xs font-medium text-[var(--muted)]"
                     >
                       {s}
                     </span>
@@ -114,7 +114,7 @@ export default function Home() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm"
+              className="rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm"
             >
               <p className="text-[var(--muted)] leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
               <p className="mt-4 text-sm font-semibold text-[var(--foreground)]">{t.name}</p>
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
 
       {/* The Invitation - bottom CTA */}
-      <section className="border-t border-stone-200/60 bg-stone-100/50">
+      <section className="border-t border-slate-200/60 bg-slate-100/50">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             This isn&apos;t built yet. That&apos;s the point.

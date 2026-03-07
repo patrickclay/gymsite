@@ -42,7 +42,7 @@ export default async function SchedulePage() {
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <header className="border-b border-stone-200/60">
+      <header className="border-b border-slate-200/60">
         <div className="mx-auto max-w-6xl px-6 py-8 sm:py-10">
           <Link
             href="/"
@@ -61,7 +61,7 @@ export default async function SchedulePage() {
 
       <main className="mx-auto max-w-6xl px-6 py-10 sm:py-12">
         {!classes?.length ? (
-          <div className="rounded-xl border border-stone-200/60 bg-white/80 p-8 text-center">
+          <div className="rounded-xl border border-slate-200/60 bg-white/80 p-8 text-center">
             <p className="text-[var(--muted)]">
               No upcoming classes right now. Check back soon or join the list to get notified.
             </p>
@@ -90,7 +90,7 @@ export default async function SchedulePage() {
               return (
                 <li
                   key={c.id}
-                  className="flex flex-col rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm"
+                  className="flex flex-col rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm"
                 >
                   <p className="text-sm font-medium text-[var(--accent)]">{c.type}</p>
                   <h2 className="mt-1 text-lg font-semibold text-[var(--foreground)]">
@@ -111,7 +111,7 @@ export default async function SchedulePage() {
                   <Link
                     href={`/schedule/${c.id}/signup`}
                     className="mt-4 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                    style={{ backgroundColor: "#c45c26" }}
+                    style={{ backgroundColor: "#3b82f6" }}
                   >
                     Reserve spot
                   </Link>

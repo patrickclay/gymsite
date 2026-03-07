@@ -13,7 +13,7 @@ export const metadata = {
   description:
     "Explore fitness classes in Lilburn, GA — strength & conditioning, kickboxing, and somatic movement. Small group coaching where your coach knows your name.",
   openGraph: {
-    title: "Our Classes | Seen Fitness",
+    title: "Our Classes | Neighbor Fit",
     description:
       "Explore fitness classes in Lilburn, GA — strength & conditioning, kickboxing, and somatic movement. Small group coaching where your coach knows your name.",
     url: "/classes",
@@ -21,7 +21,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image" as const,
-    title: "Our Classes | Seen Fitness",
+    title: "Our Classes | Neighbor Fit",
     description:
       "Explore fitness classes in Lilburn, GA — strength & conditioning, kickboxing, and somatic movement. Small group coaching where your coach knows your name.",
   },
@@ -31,7 +31,7 @@ export default function ClassesPage() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Page header */}
-      <header className="border-b border-stone-200/60">
+      <header className="border-b border-slate-200/60">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-[var(--foreground)]">
             Our Classes
@@ -52,10 +52,10 @@ export default function ClassesPage() {
             return (
               <div
                 key={classType.slug}
-                className="flex flex-col rounded-xl border border-stone-200/60 bg-white/80 p-6 backdrop-blur-sm"
+                className="flex flex-col rounded-xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-sm"
               >
                 {Icon && (
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-stone-100">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100">
                     <Icon className="h-6 w-6 text-[var(--accent)]" />
                   </div>
                 )}
@@ -66,7 +66,7 @@ export default function ClassesPage() {
                   {classType.shortDescription}
                 </p>
                 <div className="mt-4 flex items-center gap-3">
-                  <span className="inline-block rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]">
+                  <span className="inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-[var(--foreground)]">
                     Max {classType.capacity} per class
                   </span>
                 </div>
@@ -83,7 +83,7 @@ export default function ClassesPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="border-t border-stone-200/60 bg-stone-100/50">
+      <section className="border-t border-slate-200/60 bg-slate-100/50">
         <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16 lg:py-20 text-center">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-[var(--foreground)]">
             Ready to book?
@@ -95,7 +95,7 @@ export default function ClassesPage() {
           <Link
             href="/schedule"
             className="mt-6 inline-block rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#c45c26" }}
+            style={{ backgroundColor: "#3b82f6" }}
           >
             View schedule
           </Link>

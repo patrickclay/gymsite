@@ -5,46 +5,46 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Gym brand colors */
-  --background: #faf8f5;
-  --foreground: #1a1f16;
-  --accent: #c45c26;
-  --accent-hover: #a84818;
-  --muted: #5c6b52;
+  /* Brand colors — medium blue + orange accent */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --muted: #94a3b8;
 
-  /* shadcn mappings — gym brand */
-  --primary: #c45c26;
-  --primary-foreground: #faf8f5;
-  --secondary: #e8e4df;
-  --secondary-foreground: #1a1f16;
-  --muted-foreground: #7a8a6e;
-  --accent-foreground: #1a1f16;
+  /* shadcn mappings — blue theme */
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #e2e8f0;
+  --secondary-foreground: #0f172a;
+  --muted-foreground: #64748b;
+  --accent-foreground: #0f172a;
   --destructive: oklch(0.577 0.245 27.325);
-  --card: #faf8f5;
-  --card-foreground: #1a1f16;
-  --popover: #faf8f5;
-  --popover-foreground: #1a1f16;
-  --border: #d6d0c8;
-  --input: #d6d0c8;
-  --ring: #c45c26;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --border: #cbd5e1;
+  --input: #cbd5e1;
+  --ring: #3b82f6;
   --radius: 0.625rem;
 
   /* Charts */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: oklch(0.623 0.214 259.815);
+  --chart-2: oklch(0.702 0.183 62.298);
+  --chart-3: oklch(0.527 0.154 246.964);
+  --chart-4: oklch(0.748 0.176 74.756);
+  --chart-5: oklch(0.457 0.178 264.376);
 
   /* Sidebar */
-  --sidebar: #faf8f5;
-  --sidebar-foreground: #1a1f16;
-  --sidebar-primary: #c45c26;
-  --sidebar-primary-foreground: #faf8f5;
-  --sidebar-accent: #e8e4df;
-  --sidebar-accent-foreground: #1a1f16;
-  --sidebar-border: #d6d0c8;
-  --sidebar-ring: #c45c26;
+  --sidebar: #f1f5f9;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e2e8f0;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #cbd5e1;
+  --sidebar-ring: #3b82f6;
 }
 
 /* Admin dashboard — warm stone palette */

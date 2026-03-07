@@ -1,19 +1,19 @@
 export const siteConfig = {
   business: {
-    name: "Seen Fitness",
+    name: "Neighbor Fit",
     tagline: "A fitness program that actually sees you.",
     address: { street: "123 Main Street", city: "Lilburn", state: "GA", zip: "30047", country: "US" },
     phone: "(770) 555-0123",
-    email: "hello@seenfitness.com",
+    email: "hello@neighborfit.com",
     hours: { monday: "6:00 AM – 8:00 PM", tuesday: "6:00 AM – 8:00 PM", wednesday: "6:00 AM – 8:00 PM", thursday: "6:00 AM – 8:00 PM", friday: "6:00 AM – 6:00 PM", saturday: "8:00 AM – 12:00 PM", sunday: "Closed" },
     geo: { lat: 33.8901, lng: -84.1430 },
-    socials: { instagram: "https://instagram.com/seenfitness", facebook: "https://facebook.com/seenfitness" },
+    socials: { instagram: "https://instagram.com/neighborfit", facebook: "https://facebook.com/neighborfit" },
     priceRange: "$$",
     foundedYear: 2026,
   },
   seo: {
-    titleTemplate: "%s | Seen Fitness — Lilburn, GA",
-    defaultTitle: "Seen Fitness | Small Group Fitness in Lilburn, GA",
+    titleTemplate: "%s | Neighbor Fit — Lilburn, GA",
+    defaultTitle: "Neighbor Fit | Small Group Fitness in Lilburn, GA",
     defaultDescription: "Small group fitness classes with real coaching in Lilburn, GA. Strength, kickboxing, and somatic movement. Coaches who know your name.",
     keywords: ["gym Lilburn GA", "fitness classes Lilburn", "personal training Gwinnett County", "yoga near me Lilburn", "kickboxing Lilburn GA", "strength training Stone Mountain"],
     ogImage: "/og-default.png",
@@ -51,14 +51,14 @@ export const siteConfig = {
     storyHeadline: "Two coaches. One mission. A gym that sees you.",
     storyBody: [
       "We spent 20 years coaching in other people's spaces—big-box gyms, boutique studios, corporate wellness programs. We watched talented people walk in, get ignored, and walk out.",
-      "So we built Seen Fitness. A place where classes are small enough that your coaches actually know your name by day one. Where the programming meets you where you are, not where some algorithm thinks you should be.",
+      "So we built Neighbor Fit. A place where classes are small enough that your coaches actually know your name by day one. Where the programming meets you where you are, not where some algorithm thinks you should be.",
       "We're not trying to be the biggest gym in Gwinnett County. We're trying to be the one you actually look forward to walking into.",
     ],
     mission: "To create a fitness community where every person is coached, known, and challenged—regardless of where they're starting from.",
   },
   footer: {
     tagline: "Founded by two coaches who'd rather know your name than count your reps.",
-    legalName: "Seen Fitness LLC",
+    legalName: "Neighbor Fit LLC",
   },
 } as const;
 

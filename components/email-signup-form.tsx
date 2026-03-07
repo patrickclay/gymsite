@@ -18,12 +18,12 @@ export function EmailSignupForm({ buttonText = "Stay in the Loop" }: Props) {
           name="email"
           required
           placeholder="you@email.com"
-          className="flex-1 rounded-lg border border-stone-300 bg-white px-4 py-3 text-[var(--foreground)] placeholder:text-stone-400 focus:border-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20"
+          className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-3 text-[var(--foreground)] placeholder:text-slate-400 focus:border-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20"
         />
         <button
           type="submit"
           className="rounded-lg px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
-        style={{ backgroundColor: "#c45c26" }}
+        style={{ backgroundColor: "#3b82f6" }}
         >
           {buttonText}
         </button>
