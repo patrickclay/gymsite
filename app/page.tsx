@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { EmailSignupForm } from "@/components/email-signup-form";
 import { siteConfig } from "@/lib/site-config";
 
@@ -8,18 +9,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--background)]">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-slate-200/60" style={{ backgroundColor: "#e2e8f0" }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/5 via-transparent to-transparent" />
-        <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-24">
+      <section className="relative overflow-hidden border-b border-slate-200/60">
+        <Image
+          src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=1920&q=80&auto=format&fit=crop"
+          alt="Group fitness class with people doing kickboxing and strength exercises in a studio"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/70 to-slate-900/40" />
+        <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-28 lg:py-36">
           <div className="mb-4 flex items-center justify-between">
             <p className="text-sm font-medium uppercase tracking-widest text-[var(--accent)]">
               {hero.badge}
             </p>
           </div>
-          <h1 className="max-w-3xl font-bold tracking-tight text-[var(--foreground)] text-4xl sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-3xl font-bold tracking-tight text-white text-4xl sm:text-5xl lg:text-6xl">
             {hero.headline}
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-[var(--muted)]">
+          <p className="mt-6 max-w-xl text-lg text-slate-200">
             {hero.subheadline}
           </p>
           <Link
