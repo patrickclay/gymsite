@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { TrackerNavLink } from "@/components/tracker/tracker-nav-link";
@@ -14,7 +15,14 @@ export function SiteHeader() {
   return (
     <nav className="border-b border-slate-200/60 bg-[var(--background)]">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-lg font-bold tracking-tight text-[var(--foreground)]">
+        <Link href="/" className="flex items-center gap-3 text-lg font-bold tracking-tight text-[var(--foreground)]">
+          <Image
+            src="/neighborfit.png"
+            alt={`${siteConfig.business.name} logo`}
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
           {siteConfig.business.name}
         </Link>
         <div className="flex items-center gap-6">

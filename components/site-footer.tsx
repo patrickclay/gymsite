@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
@@ -8,7 +9,16 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="font-semibold text-[var(--foreground)]">{business.name}</p>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/neighborfit.png"
+                alt={`${business.name} logo`}
+                width={36}
+                height={36}
+                className="rounded-full"
+              />
+              <p className="font-semibold text-[var(--foreground)]">{business.name}</p>
+            </div>
             <p className="mt-2 text-sm text-[var(--muted)]">{footer.tagline}</p>
           </div>
           <div>
