@@ -37,6 +37,7 @@ import {
 import { MEAL_TYPES } from "@/lib/tracker/types";
 import type { Meal, Dish } from "@/lib/tracker/types";
 import { Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react";
+import { FoodSearch, type NutritionResult } from "@/components/tracker/food-search";
 
 export default function MealsPage() {
   const { user } = useAuth();
@@ -97,6 +98,18 @@ export default function MealsPage() {
     setDishSugar("");
     setDishSodium("");
     setDishServing("");
+  }
+
+  function handleFoodSelected(result: NutritionResult) {
+    setDishName(result.name);
+    setDishCalories(String(result.calories));
+    setDishProtein(String(result.protein));
+    setDishCarbs(String(result.carbs));
+    setDishFat(String(result.fat));
+    setDishFiber(String(result.fiber));
+    setDishSugar(String(result.sugar));
+    setDishSodium(String(result.sodium));
+    setDishServing(result.serving_size);
   }
 
   async function handleCreateMeal(e: React.FormEvent) {
@@ -358,6 +371,26 @@ export default function MealsPage() {
           <DialogHeader>
             <DialogTitle>Add Dish</DialogTitle>
           </DialogHeader>
+
+          {/* Nutritionix food search */}
+          <div className="space-y-1">
+            <Label className="text-xs text-muted-foreground">
+              Search for a food to auto-fill nutrition info
+            </Label>
+            <FoodSearch onSelect={handleFoodSelected} />
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs">
+              <span className="bg-background px-2 text-muted-foreground">
+                or enter manually
+              </span>
+            </div>
+          </div>
+
           <form onSubmit={handleAddDish} className="space-y-3">
             <div className="space-y-2">
               <Label>Dish Name</Label>
