@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import { TrackerNavLink } from "@/components/tracker/tracker-nav-link";
 
 export function SiteHeader() {
   const links = [
@@ -26,6 +27,7 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <TrackerNavLink />
           <Link
             href="/schedule"
             className="rounded-lg px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
