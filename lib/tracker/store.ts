@@ -29,6 +29,17 @@ export async function signIn(email: string, password: string) {
   return data;
 }
 
+export async function signInWithGoogle() {
+  const { data, error } = await supabase().auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${window.location.origin}/tracker/auth/callback`,
+    },
+  });
+  if (error) throw error;
+  return data;
+}
+
 export async function signOut() {
   const { error } = await supabase().auth.signOut();
   if (error) throw error;
@@ -156,6 +167,25 @@ export async function deleteExercise(exerciseId: string) {
     .delete()
     .eq("id", exerciseId);
   if (error) throw error;
+}
+
+// ── Admin ─────────────────────────────────────────────────────────────────────
+
+export async function getAllProfiles(): Promise<UserProfile[]> {
+  const { data, error } = await supabase()
+    .from("tracker_profiles")
+    .select("*")
+    .order("display_name", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as UserProfile[];
+}
+
+export async function getMealsForUser(userId: string, date: string): Promise<Meal[]> {
+  return getMealsForDate(userId, date);
+}
+
+export async function getExercisesForUser(userId: string, date: string): Promise<ExerciseEntry[]> {
+  return getExercisesForDate(userId, date);
 }
 
 // ── Computed ──────────────────────────────────────────────────────────────────
