@@ -32,7 +32,7 @@ import {
 } from "@/lib/tracker/store";
 import { EXERCISE_TYPES } from "@/lib/tracker/types";
 import type { ExerciseEntry } from "@/lib/tracker/types";
-import { Plus, Trash2, Clock, Flame } from "lucide-react";
+import { Plus, Trash2, Clock, Flame, Loader2 } from "lucide-react";
 
 export default function ExercisePage() {
   const { user } = useAuth();
@@ -47,6 +47,7 @@ export default function ExercisePage() {
   const [duration, setDuration] = useState("");
   const [caloriesBurned, setCaloriesBurned] = useState("");
   const [notes, setNotes] = useState("");
+  const [estimating, setEstimating] = useState(false);
 
   const loadExercises = useCallback(async () => {
     if (!user) return;
@@ -71,6 +72,29 @@ export default function ExercisePage() {
     setDuration("");
     setCaloriesBurned("");
     setNotes("");
+  }
+
+  async function estimateCalories() {
+    if (!name.trim()) return;
+    setEstimating(true);
+    try {
+      const res = await fetch("/api/exercise", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          activity: name.trim(),
+          duration_minutes: parseFloat(duration) || 30,
+        }),
+      });
+      const data = await res.json();
+      if (data.results?.length > 0) {
+        setCaloriesBurned(String(Math.round(data.results[0].total_calories)));
+      }
+    } catch {
+      // ignore - user can still enter manually
+    } finally {
+      setEstimating(false);
+    }
   }
 
   async function handleCreate(e: React.FormEvent) {
@@ -231,13 +255,25 @@ export default function ExercisePage() {
               </div>
               <div className="space-y-1">
                 <Label className="text-xs">Calories Burned</Label>
-                <Input
-                  type="number"
-                  inputMode="numeric"
-                  placeholder="0"
-                  value={caloriesBurned}
-                  onChange={(e) => setCaloriesBurned(e.target.value)}
-                />
+                <div className="flex gap-1">
+                  <Input
+                    type="number"
+                    inputMode="numeric"
+                    placeholder="0"
+                    value={caloriesBurned}
+                    onChange={(e) => setCaloriesBurned(e.target.value)}
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="shrink-0 text-xs"
+                    disabled={!name.trim() || estimating}
+                    onClick={estimateCalories}
+                  >
+                    {estimating ? <Loader2 className="h-3 w-3 animate-spin" /> : "Est."}
+                  </Button>
+                </div>
               </div>
             </div>
             <div className="space-y-2">

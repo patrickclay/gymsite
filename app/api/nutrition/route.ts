@@ -1,103 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const NUTRITIONIX_APP_ID = process.env.NUTRITIONIX_APP_ID;
-const NUTRITIONIX_APP_KEY = process.env.NUTRITIONIX_APP_KEY;
-const NUTRITIONIX_URL = "https://trackapi.nutritionix.com/v2";
+const API_NINJAS_KEY = process.env.API_NINJAS_KEY;
+const API_NINJAS_URL = "https://api.api-ninjas.com/v1/nutrition";
 
 export async function POST(req: NextRequest) {
-  if (!NUTRITIONIX_APP_ID || !NUTRITIONIX_APP_KEY) {
+  if (!API_NINJAS_KEY) {
     return NextResponse.json(
-      { error: "Nutritionix API keys not configured" },
+      { error: "API Ninjas key not configured. Set API_NINJAS_KEY in .env.local." },
       { status: 500 }
     );
   }
 
-  const { query, endpoint } = await req.json();
+  const { query } = await req.json();
 
   if (!query || typeof query !== "string") {
     return NextResponse.json({ error: "Missing query" }, { status: 400 });
   }
 
-  const headers = {
-    "Content-Type": "application/json",
-    "x-app-id": NUTRITIONIX_APP_ID,
-    "x-app-key": NUTRITIONIX_APP_KEY,
-  };
-
   try {
-    if (endpoint === "search") {
-      // Instant search — returns food name suggestions
-      const res = await fetch(
-        `${NUTRITIONIX_URL}/search/instant?query=${encodeURIComponent(query)}`,
-        { headers }
-      );
-      if (!res.ok) {
-        const text = await res.text();
-        return NextResponse.json(
-          { error: `Nutritionix error: ${res.status}`, detail: text },
-          { status: res.status }
-        );
-      }
-      const data = await res.json();
-
-      // Combine common + branded results, limit to 10
-      const results = [
-        ...(data.common ?? []).map((item: Record<string, unknown>) => ({
-          food_name: item.food_name,
-          serving_unit: item.serving_unit,
-          serving_qty: item.serving_qty,
-          photo: (item.photo as Record<string, unknown>)?.thumb,
-          source: "common" as const,
-        })),
-        ...(data.branded ?? []).map((item: Record<string, unknown>) => ({
-          food_name: item.food_name,
-          brand_name: item.brand_name,
-          serving_unit: item.serving_unit,
-          serving_qty: item.serving_qty,
-          nf_calories: item.nf_calories,
-          photo: (item.photo as Record<string, unknown>)?.thumb,
-          source: "branded" as const,
-          nix_item_id: item.nix_item_id,
-        })),
-      ].slice(0, 10);
-
-      return NextResponse.json({ results });
-    }
-
-    // Default: natural language nutrients endpoint
-    const res = await fetch(`${NUTRITIONIX_URL}/natural/nutrients`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ query }),
-    });
+    const res = await fetch(
+      `${API_NINJAS_URL}?query=${encodeURIComponent(query)}`,
+      { headers: { "X-Api-Key": API_NINJAS_KEY } }
+    );
 
     if (!res.ok) {
       const text = await res.text();
       return NextResponse.json(
-        { error: `Nutritionix error: ${res.status}`, detail: text },
+        { error: `API Ninjas error: ${res.status}`, detail: text },
         { status: res.status }
       );
     }
 
-    const data = await res.json();
+    const data: Array<Record<string, unknown>> = await res.json();
 
     // Map to our format
-    const foods = (data.foods ?? []).map((food: Record<string, unknown>) => ({
-      name: food.food_name,
-      serving_size: `${food.serving_qty} ${food.serving_unit}`,
-      serving_weight_grams: food.serving_weight_grams,
-      calories: Math.round((food.nf_calories as number) ?? 0),
-      protein: Math.round(((food.nf_protein as number) ?? 0) * 10) / 10,
-      carbs: Math.round(((food.nf_total_carbohydrate as number) ?? 0) * 10) / 10,
-      fat: Math.round(((food.nf_total_fat as number) ?? 0) * 10) / 10,
-      fiber: Math.round(((food.nf_dietary_fiber as number) ?? 0) * 10) / 10,
-      sugar: Math.round(((food.nf_sugars as number) ?? 0) * 10) / 10,
-      sodium: Math.round((food.nf_sodium as number) ?? 0),
-      photo: (food.photo as Record<string, unknown>)?.thumb,
+    const foods = data.map((item) => ({
+      name: item.name as string,
+      serving_size: `${item.serving_size_g ?? 0}g`,
+      calories: Math.round((item.calories as number) ?? 0),
+      protein: Math.round(((item.protein_g as number) ?? 0) * 10) / 10,
+      carbs: Math.round(((item.carbohydrates_total_g as number) ?? 0) * 10) / 10,
+      fat: Math.round(((item.fat_total_g as number) ?? 0) * 10) / 10,
+      fiber: Math.round(((item.fiber_g as number) ?? 0) * 10) / 10,
+      sugar: Math.round(((item.sugar_g as number) ?? 0) * 10) / 10,
+      sodium: Math.round((item.sodium_mg as number) ?? 0),
     }));
 
     return NextResponse.json({ foods });
-  } catch (err) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch nutrition data" },
       { status: 500 }
