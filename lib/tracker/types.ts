@@ -6,6 +6,7 @@ export interface UserProfile {
   protein_target: number;
   carbs_target: number;
   fat_target: number;
+  is_admin: boolean;
   created_at: string;
 }
 
@@ -78,3 +79,13 @@ export const DEFAULT_TARGETS = {
   carbs_target: 250,
   fat_target: 65,
 };
+
+// Admin emails — these users can view all students' data
+export const ADMIN_EMAILS = [
+  "pboggs2006@gmail.com",
+];
+
+export function isAdminEmail(email: string | undefined | null): boolean {
+  if (!email) return false;
+  return ADMIN_EMAILS.includes(email.toLowerCase());
+}

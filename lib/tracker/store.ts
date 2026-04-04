@@ -169,6 +169,25 @@ export async function deleteExercise(exerciseId: string) {
   if (error) throw error;
 }
 
+// ── Admin ─────────────────────────────────────────────────────────────────────
+
+export async function getAllProfiles(): Promise<UserProfile[]> {
+  const { data, error } = await supabase()
+    .from("tracker_profiles")
+    .select("*")
+    .order("display_name", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as UserProfile[];
+}
+
+export async function getMealsForUser(userId: string, date: string): Promise<Meal[]> {
+  return getMealsForDate(userId, date);
+}
+
+export async function getExercisesForUser(userId: string, date: string): Promise<ExerciseEntry[]> {
+  return getExercisesForDate(userId, date);
+}
+
 // ── Computed ──────────────────────────────────────────────────────────────────
 
 export function computeDailyTotals(

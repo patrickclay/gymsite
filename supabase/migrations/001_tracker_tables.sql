@@ -10,6 +10,7 @@ create table if not exists tracker_profiles (
   protein_target integer not null default 150,
   carbs_target integer not null default 250,
   fat_target integer not null default 65,
+  is_admin boolean not null default false,
   created_at timestamptz not null default now()
 );
 
@@ -117,3 +118,31 @@ create policy "Users can insert own exercises"
 create policy "Users can delete own exercises"
   on tracker_exercises for delete
   using (auth.uid() = user_id);
+
+-- ── Admin policies ──────────────────────────────────────────────────────────
+-- Admins (is_admin = true) can view ALL students' data
+
+-- Helper function to check if the current user is an admin
+create or replace function is_tracker_admin()
+returns boolean as $$
+  select exists (
+    select 1 from tracker_profiles
+    where id = auth.uid() and is_admin = true
+  );
+$$ language sql security definer;
+
+create policy "Admins can view all profiles"
+  on tracker_profiles for select
+  using (is_tracker_admin());
+
+create policy "Admins can view all meals"
+  on tracker_meals for select
+  using (is_tracker_admin());
+
+create policy "Admins can view all dishes"
+  on tracker_dishes for select
+  using (is_tracker_admin());
+
+create policy "Admins can view all exercises"
+  on tracker_exercises for select
+  using (is_tracker_admin());

@@ -2,18 +2,29 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, UtensilsCrossed, Dumbbell, Settings } from "lucide-react";
+import { Home, UtensilsCrossed, Dumbbell, Settings, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/tracker/auth-context";
+import { isAdminEmail } from "@/lib/tracker/types";
 
-const navItems = [
+const baseNavItems = [
   { href: "/tracker", label: "Dashboard", icon: Home },
   { href: "/tracker/meals", label: "Meals", icon: UtensilsCrossed },
   { href: "/tracker/exercise", label: "Exercise", icon: Dumbbell },
   { href: "/tracker/settings", label: "Settings", icon: Settings },
 ];
 
+const adminNavItem = {
+  href: "/tracker/admin",
+  label: "Students",
+  icon: Users,
+};
+
 export function BottomNav() {
   const pathname = usePathname();
+  const { user } = useAuth();
+  const isAdmin = isAdminEmail(user?.email);
+  const navItems = isAdmin ? [...baseNavItems, adminNavItem] : baseNavItems;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
