@@ -19,8 +19,8 @@ export const siteConfig = {
     ogImage: "/og-default.png",
   },
   hero: {
-    badge: "Now Open · Lilburn, GA",
-    headline: "You've been looking for a fitness program that actually sees you.",
+    badge: "Coming Soon · Lilburn, GA",
+    headline: "You've been looking for a fitness program that actually understands you.",
     subheadline: "We spent 20+ years coaching in other people's spaces. Now we're building our own—and we're building it with you. A place where coaches know your name, your goals, and what you need to get there.",
     ctaText: "View schedule & reserve your spot",
     ctaHref: "/schedule",
