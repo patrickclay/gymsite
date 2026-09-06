@@ -32,9 +32,6 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-
-          # Optional: limit what Claude can do
-          # claude_args: |
-          #   --max-turns 10
-          #   --allowedTools "Bash(npm install),Bash(npm run build),Bash(npm run test:*)"
-          #   --system-prompt "Follow our coding standards. Ensure all new code has tests."
+          claude_args: |
+            --allowedTools "Bash(gh pr create:*)"
+            --append-system-prompt "After you commit and push your changes, open a pull request against main with gh pr create. Use a clear title and a short body that closes the issue (e.g. 'Closes #N'). Then include the PR link in your final comment."
